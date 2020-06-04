@@ -1,0 +1,20 @@
+#logo-section{
+    position: 'relative';
+    height: 15rem;
+    width: 100vw;
+    background-color:  #373A3C;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+}
+
+#logo{
+    margin: auto;
+}
+
+#sub-logo{
+    position: absolute;
+    top: 10.5rem;
+    text-align: center;
+    width: 100%;
+}
