@@ -1,8 +1,11 @@
 import React from 'react';
 import './styles/Home.css';
+import {Container, Col, Row} from 'react-bootstrap';
 import logo from './img/logo.png';
 import sublogo from './img/sublogo.png';
-import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
+import jirani from './img/jirani-logo.png';
+import menu from './img/menu.png';
+
 
 function Home() {
     return (
@@ -15,29 +18,27 @@ function Home() {
             
             <br />
             
-            <Navbar collapseOnSelect expand="lg"  variant="light">
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto">
-                    <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
-                    <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
-                    </Nav>
-                    <Nav>
-                    <Nav.Link href="#deets">More deets</Nav.Link>
-                    <Nav.Link eventKey={2} href="#memes">
-                        Dank memes
-                    </Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+            <nav id="navbar">
+                <img id="jirani" src={jirani} alt="navigation logo" height="25px" width="186px"/>
+                <div id="collapsing-menu">
+                    <span>Home</span>
+                    <span>Donate</span>
+                    <span>About</span>
+                    <span>Contact</span>
+                </div>
+
+                <img id="open-menu-icon" src={menu} alt="open menu icon" width="100px" height="40px"/>
+            </nav>
+            <br />
+            <Container id="body-section" fluid >
+                <Row>
+                    <Col>1 of 3</Col>
+                    <Col>2 of 3</Col>
+                    <Col>3 of 3</Col>
+                </Row>
+                    
+             
+            </Container>
             
         </div>
     )

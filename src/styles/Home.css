@@ -18,3 +18,41 @@
     text-align: center;
     width: 100%;
 }
+
+#navbar{
+    position: relative;
+    align-items: center;
+    border: solid 1px red;
+    width: 100%;
+    height: 5.94rem;
+    background: #fff;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15);
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+}
+
+#collapsing-menu{
+    position: absolute;
+    right: 12.5%;
+}
+
+#jirani{
+    position: absolute;
+    left: 50px;
+}
+
+#collapsing-menu span{
+    margin-left: 30px ;
+}
+
+#open-menu-icon{
+    position: absolute;
+    right: 3.6%;
+}
+
+#body-section{
+    border: solid 1px green;
+}
+
+
