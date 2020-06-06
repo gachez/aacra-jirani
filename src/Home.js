@@ -3,20 +3,14 @@ import './styles/Home.css';
 import {Container, Col, Row} from 'react-bootstrap';
 import logo from './img/logo.png';
 import sublogo from './img/sublogo.png';
-import jirani from './img/jirani-logo.png';
-import menu from './img/menu.png';
 import searchIcon from './img/icons_search.png';
 import navigation from './img/nav-home.png';
 import imagestitle from './img/images-title.png';
 import thumbnail from './img/afrique.jpg';
 import reset from './img/reset.png';
-import orange from './img/logo-orange.png';
-import twitter from './img/twitter.png';
-import linkedin from './img/linkedin.png';
-import instagram from './img/instagram.png';
-import facebook from './img/facebook.png';
 import next from './img/component.png';
-
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 const images = [
     'dkopweokp',
@@ -36,17 +30,7 @@ function Home() {
                 <img id="logo" src={logo} height="74.24px" alt="African art critical resources"/>
                 <div id="sub-logo"><img src={sublogo} alt="framing your artistic experience"/></div>
             </header>
-            <nav id="navbar">
-                <img id="jirani" src={jirani} alt="navigation logo" height="25px" width="186px"/>
-                <div id="collapsing-menu">
-                    <span>Home</span>
-                    <span>Donate</span>
-                    <span>About</span>
-                    <span>Contact</span>
-                </div>
-
-                <img id="open-menu-icon" src={menu} alt="open menu icon" width="100px" height="40px"/>
-            </nav>
+            <Navbar />
             <br />
             <Container id="body-section" fluid >
                 <Row>
@@ -138,25 +122,8 @@ function Home() {
             <br />
             <br />
             <br />
-
-            <section className="footer">
-                <img className="footer-logo" alt="orange logo" src={orange}/>      
-                <span className="copyright">Copyright.All Rights Reserved.2020</span>     
-                <div className="navigation-footer">
-                    <span>Home</span>
-                    <span>Donate</span>
-                    <span>About</span>
-                    <span>Contact</span>
-                </div>
-                <span className="find-us">Find us online</span>
-                <div className="social-icons">
-                    <img src={facebook} alt="facebook icon"/>
-                    <img src={twitter} alt="twiiter icon"/>
-                    <img src={instagram} alt="instagram icon"/>
-                    <img src={linkedin} alt="linkedin icon"/>
-
-                </div>
-            </section>
+            
+            <Footer />
             
         </div>
     )

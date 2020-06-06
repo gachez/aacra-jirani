@@ -1,0 +1,90 @@
+.back{
+    position: absolute;
+    left: 3.125rem;
+}
+
+.content-title{
+    font-family: Ubuntu;
+font-style: normal;
+font-weight: 500;
+font-size: 30px;
+line-height: 34px;
+
+/* identical to box height */
+display: flex;
+align-items: center;
+
+/* grey 1 */
+color: #373A3C;
+position: absolute;
+left: 11.4375rem;
+top: 8.125rem;
+}
+
+.content-body{
+    font-family: Ubuntu;
+font-style: normal;
+font-weight: 300;
+font-size: 18px;
+line-height: 24px;
+
+/* grey 1 */
+color: #373A3C;
+width: 70%;
+position: absolute;
+left: 183px;
+}
+
+.images-container{
+    display: grid;
+    display: -ms-grid;
+    display: -moz-grid;
+    gap: 1rem;
+    position: relative;
+    left: 183px;
+}
+
+.comments-container{
+    position: relative;
+    left: 183px;
+    width: 70%;
+    height: auto;
+    background: #FFFFFF;
+box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+}
+
+
+.comments-container::before{
+    content: 'Add your comments about this work';
+    display: block;
+    position: relative;
+    top: -50px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 34px;
+
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+
+    /* grey 1 */
+    color: #373A3C;
+}
+
+.comments-container input{
+    position: relative;
+    left: 75px;
+    width: 80%;
+    height: 175px;
+}
+
+.comments-container img{
+    position: relative;
+    left: 78%;
+}
+
+.comments{
+    margin: 30px;
+    margin-left: 75px;
+}
