@@ -10,6 +10,11 @@ import navigation from './img/nav-home.png';
 import imagestitle from './img/images-title.png';
 import thumbnail from './img/afrique.jpg';
 import reset from './img/reset.png';
+import orange from './img/logo-orange.png';
+import twitter from './img/twitter.png';
+import linkedin from './img/linkedin.png';
+import instagram from './img/instagram.png';
+import facebook from './img/facebook.png';
 
 
 const images = [
@@ -55,7 +60,7 @@ function Home() {
                                     return(
                                       <div style={{display: 'grid', margin:'30px'}}>
                                       <img  src={thumbnail} width="200px" height="200px" alt="images thumbnail"/>
-                                      <span>Home jiosoij</span>    
+                                      <span style={{padding: '10px', fontSize: '12px'}}>Home jiosoij</span>    
                                         </div>  
                                     )
                                 })         
@@ -66,7 +71,7 @@ function Home() {
                     <Col id="third-column">
 
                       <div id="search-input">
-                          <input style={{position: 'absolute', right: '50px', borderBottom: 'solid 1px black',width: '200px'}} placeholder="Search" type="textbox"/>
+                          <input style={{position: 'absolute', right: '50px', borderBottom: 'solid 1px black',width: '200px'}} placeholder="Search title, artist" type="textbox"/>
                           <img id="searchIcon" src={searchIcon} width="18px" height="18px" />
                       </div>
 
@@ -104,8 +109,29 @@ function Home() {
                     </Col>
                 </Row>
             </Container>
+            <br /><br /><br /><br />
+            <br /><br /><br /><br />
             <br />
-            
+            <br />
+
+            <section className="footer">
+                <img className="footer-logo" alt="orange logo" src={orange}/>      
+                <span className="copyright">Copyright.All Rights Reserved.2020</span>     
+                <div className="navigation-footer">
+                    <span>Home</span>
+                    <span>Donate</span>
+                    <span>About</span>
+                    <span>Contact</span>
+                </div>
+                <span className="find-us">Find us online</span>
+                <div className="social-icons">
+                    <img src={facebook} alt="facebook icon"/>
+                    <img src={twitter} alt="twiiter icon"/>
+                    <img src={instagram} alt="instagram icon"/>
+                    <img src={linkedin} alt="linkedin icon"/>
+
+                </div>
+            </section>
             
         </div>
     )
