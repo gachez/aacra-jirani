@@ -1,11 +1,9 @@
 import React from 'react';
 import {Container, Col, Row} from 'react-bootstrap';
-import logo from '../img/logo.png';
-import sublogo from '../img/sublogo.png';
 import jirani from '../img/jirani-logo.png';
 import menu from '../img/menu.png';
 import searchIcon from '../img/icons_search.png';
-import navigation from '../img/nav_videos.png';
+import navigation from '../img/nav_publications.png';
 import imagestitle from '../img/images-title.png';
 import thumbnail from '../img/afrique.jpg';
 import reset from '../img/reset.png';
@@ -27,7 +25,7 @@ const images = [
     'dkopweokp'
 ];
 
-class Videos extends React.Component {
+class Publications extends React.Component {
     render(){
         return (
             <div>
@@ -49,7 +47,7 @@ class Videos extends React.Component {
                             <img src={navigation} alt="navigation side" id="nav-side"/>
                         </Col>
                         <Col xs={8} id="second-column" >
-                            <span  id="image-title">Contemporary African Art: VIDEOS</span> 
+                            <span  id="image-title">Contemporary African Art: PUBLICATIONS</span> 
                             <section id="images-grid">
                                 {
                                       images.map( img => {
@@ -71,7 +69,7 @@ class Videos extends React.Component {
                               <img id="searchIcon" src={searchIcon} width="18px" height="18px" />
                           </div>
     
-                        <span id="side-title">View VIDEOS</span>
+                        <span id="side-title" style={{right: '80px'}}>View PUBLICATIONS</span>
     
                         <div className="category-box" style={{
                              position: 'absolute',
@@ -99,7 +97,7 @@ class Videos extends React.Component {
                              top: '218px',
                              right: '50px'
                           }}>
-                           <span>Select a discussion</span>
+                           <span>Select a format</span>
                            <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6 9L12 15L18 9" stroke="#FF321A" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -107,11 +105,8 @@ class Videos extends React.Component {
                         <div className="dropdown-box" style={{
                             top: '263px'
                         }}>
-                            <span>Decorative arts</span>
-                            <span>Decorative arts</span>
-                            <span>Decorative arts</span>
-                            <span>Decorative arts</span>
-                            <span>Decorative arts</span>
+                            <span>PDF</span>
+                            <span>EPUB</span>
                         </div>
                         <br />
                         <div className="category-box" style={{
@@ -142,7 +137,7 @@ class Videos extends React.Component {
                 <br /><br /><br />
                 
                 <div className="navigation-down">
-                  <span>Contemporary African Art: PUBLICATIONS</span>
+                  <span>Contemporary African Art: IMAGES</span>
                   <img src={next} alt="next down navigation" />
                 </div>
     
@@ -175,4 +170,4 @@ class Videos extends React.Component {
    
 }
 
-export default Videos;
+export default Publications;
