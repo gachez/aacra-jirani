@@ -15,6 +15,7 @@ import twitter from './img/twitter.png';
 import linkedin from './img/linkedin.png';
 import instagram from './img/instagram.png';
 import facebook from './img/facebook.png';
+import next from './img/component.png';
 
 
 const images = [
@@ -88,7 +89,15 @@ function Home() {
                        <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6 9L12 15L18 9" stroke="#FF321A" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-
+                    </div>
+                    <div className="dropdown-box" style={{
+                        top: '183px'
+                    }}>
+                        <span>Decorative arts</span>
+                        <span>Decorative arts</span>
+                        <span>Decorative arts</span>
+                        <span>Decorative arts</span>
+                        <span>Decorative arts</span>
                     </div>
                     <br />
                     <div className="category-box" style={{
@@ -100,7 +109,16 @@ function Home() {
                        <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6 9L12 15L18 9" stroke="#FF321A" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-
+                    </div>
+                    <div className="dropdown-box" style={{
+                        top: '263px'
+                    }}>
+                        <span>2020</span>
+                        <span>2019</span>
+                        <span>2018</span>
+                        <span>2017</span>
+                        <span>2016</span>
+                        <span>2015</span>
                     </div>
                     <br />
                     
@@ -110,7 +128,14 @@ function Home() {
                 </Row>
             </Container>
             <br /><br /><br /><br />
-            <br /><br /><br /><br />
+            <br /><br /><br />
+            
+            <div className="navigation-down">
+              <span>Contemporary African Art: VIDEOS</span>
+              <img src={next} alt="next down navigation" />
+            </div>
+
+            <br />
             <br />
             <br />
 
