@@ -81,6 +81,18 @@
 }
 
 #image-title{
+    font-family: Ubuntu;
+font-style: normal;
+font-weight: 500;
+font-size: 30px;
+line-height: 34px;
+
+/* identical to box height */
+display: flex;
+align-items: center;
+
+/* grey 1 */
+color: #373A3C;
     margin-bottom: 2rem;
     margin-left: 1.95rem;
 }
@@ -101,6 +113,18 @@
     position: absolute;
     right: 138px;
     top: 4.25rem;
+    font-family: Ubuntu;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
+
+/* identical to box height */
+display: flex;
+align-items: center;
+
+/* burnt orange */
+color: #FF321A;
 }
 
 .category-box{
@@ -114,6 +138,7 @@
     box-sizing: border-box;
     width: 200px;
     height: 45px;
+    cursor: pointer;
 }
 
 .dropdown-box{
@@ -174,7 +199,7 @@
 
 #reset{
     position: absolute;
-    top: 300px;
+    top: 360px;
     right: 50px;
     cursor: pointer;
 }
