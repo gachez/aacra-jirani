@@ -4,6 +4,8 @@ import Footer from '../components/Footer';
 import back from '../img/buttons_back.png';
 import '../styles/ImagesContent.css';
 import post from '../img/post.png';
+import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 const images = [
     'sd',
@@ -12,70 +14,86 @@ const images = [
 ];
 
 class VideosContent extends React.Component{
+    state={
+        videos: [],
+        isLoaded: false
+    }
+
+    componentDidMount(){
+        axios.get(`https://tengezastudios.co.ke/wp-ckr/wp-json/wp/v2/videos/${parseInt(localStorage.id)}`)
+        .then(res =>{
+            this.setState({
+                videos: res.data,
+                isLoaded: true
+            })
+        })
+        .catch(err => console.log(err))
+
+
+    } 
     render() {
-        return(
-            <div className="page-content">
-                <Navbar />
-                <br />
-                <br />
-                <img src={back} alt="back" className="back"/>
-                <span className="content-title">Art title goes here</span>
-                <br />
-                <br />
-                <p className="content-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <div className="images-container">
-        
-               <iframe 
-                 width="420" 
-                 height="315"
-                 src="https://www.youtube.com/embed/tgbNymZ7vqY"
-                 title="linus torvalds" 
-                 className="videos-frame" ></iframe>
+        if(this.state.isLoaded){
+            return(
+                <div className="page-content">
+                    <Navbar />
+                    <br />
+                    <br />
+                    <Link to={"/videos"}><img src={back} alt="back" className="back"/></Link>
+                    <span className="content-title" dangerouslySetInnerHTML={{ __html: this.state.videos.title.rendered}}></span>
+                    <br />
+                    <br />
+                    <p className="content-body" dangerouslySetInnerHTML={{ __html: this.state.videos.excerpt.rendered}}>
+                    </p>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div className="images-container">
+            
+                   <iframe 
+                     width="420" 
+                     height="315"
+                     src={this.state.videos['acf'].url}
+                     title="linus torvalds" 
+                     className="videos-frame" ></iframe>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <section className="comments-container">
+                        <input placeholder="What are your thoughts on this work?" />
+                        <br /><br />
+                        <div></div>
+                        <br />
+                        <img src={post} alt="post comment"/>
+                        <br />
+                        <br />
+                        <hr />
+                        <br />
+                        {
+                            images.map( img => {
+                                return(
+                                    <>
+                                        <h2 key={img} className="comment-title" >kopop</h2>
+                                        <p className="comments">kodpkpodwk okdpwqdpwok jodpwjq</p>
+                                        <small style={{color: 'rgba(0,0,0,0.6)'}} className="comments">12th June 2020</small>
+                                        <br />
+                                    </>
+                                )
+                            })
+                        }
+                    </section>
+                 
+                   <br /><br /><br />
+                   <Footer />
                 </div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <section className="comments-container">
-                    <input placeholder="What are your thoughts on this work?" />
-                    <br /><br />
-                    <div></div>
-                    <br />
-                    <img src={post} alt="post comment"/>
-                    <br />
-                    <br />
-                    <hr />
-                    <br />
-                    {
-                        images.map( img => {
-                            return(
-                                <>
-                                    <h2 key={img} className="comment-title" >kopop</h2>
-                                    <p className="comments">kodpkpodwk okdpwqdpwok jodpwjq</p>
-                                    <small style={{color: 'rgba(0,0,0,0.6)'}} className="comments">12th June 2020</small>
-                                    <br />
-                                </>
-                            )
-                        })
-                    }
-                </section>
-             
-               <br /><br /><br />
-               <Footer />
-            </div>
-        )
+            )
+        }
+      return null;
     }
 }
 

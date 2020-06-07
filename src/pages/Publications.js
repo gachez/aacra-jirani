@@ -90,7 +90,12 @@ class Publications extends React.Component {
                                     {
                                           this.state.publications.map( img => {
                                             return(
-                                              <div style={{display: 'grid', margin:'30px'}}>
+                                              <div style={{display: 'grid', margin:'30px'}} onClick={
+                                                () =>{
+                                                    window.location.href="/publication-content"
+                                                    localStorage.setItem('id', img.id)
+                                                }
+                                              }>
                                               <img  src={img._embedded['wp:featuredmedia']['0'].source_url} width="300px" height="192px" alt="images thumbnail"/>
                                               <span style={{padding: '10px', fontSize: '12px'}} dangerouslySetInnerHTML={{__html: img.title.rendered}} ></span>    
                                                 </div>  

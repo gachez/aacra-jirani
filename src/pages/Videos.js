@@ -188,7 +188,12 @@ class Videos extends React.Component {
                                                 {
                                                     this.state.videos.map( img => {
                                                         return(
-                                                        <div style={{display: 'grid', margin:'30px'}}>
+                                                        <div style={{display: 'grid', margin:'30px',cursor: 'pointer'}} onClick={
+                                                            () =>{
+                                                                window.location.href="/videos-content"
+                                                                localStorage.setItem('id', img.id)
+                                                            }
+                                                        }>
                                                         <img  src={img._embedded['wp:featuredmedia']['0'].source_url} width="300px" height="150px" alt="images thumbnail"/>
                                                         <span style={{padding: '10px', fontSize: '12px'}} dangerouslySetInnerHTML={{__html: img.title.rendered}}></span>    
                                                             </div>  

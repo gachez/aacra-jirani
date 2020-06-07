@@ -7,6 +7,8 @@ import Publications from './pages/Publications';
 import ImagesContent from './pages/ImagesContent';
 import VideosContent from './pages/VideosContent';
 import PublicationContent from './pages/PublicationContent';
+import ChooseContent from './pages/ChooseContent';
+
 
 const App = () =>{
                 return(
@@ -18,6 +20,7 @@ const App = () =>{
                     <Route exact path={"/images-content"} component={ImagesContent}></Route>
                     <Route exact path={"/videos-content"} component={VideosContent}></Route>
                     <Route exact path={"/publication-content"} component={PublicationContent}></Route>
+                    <Route exact path={"/choose-content"} component={ChooseContent}></Route>
 
                 </Switch>
             </BrowserRouter>
