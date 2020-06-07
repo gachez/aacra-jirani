@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import back from '../img/buttons_back.png';
 import '../styles/ImagesContent.css';
-import image from '../img/content_img.png';
 import post from '../img/post.png';
 
 const images = [
@@ -12,7 +11,7 @@ const images = [
     'sd'
 ];
 
-class ImagesContent extends React.Component{
+class VideosContent extends React.Component{
     render() {
         return(
             <div className="page-content">
@@ -38,13 +37,12 @@ class ImagesContent extends React.Component{
                 <br />
                 <div className="images-container">
         
-                    {
-                        images.map( img => {
-                            return(
-                                <img src={image} alt="content-image"/>
-                            )
-                        })
-                    }
+               <iframe 
+                 width="420" 
+                 height="315"
+                 src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                 title="linus torvalds" 
+                 className="videos-frame" ></iframe>
                 </div>
                 <br />
                 <br />
@@ -66,7 +64,7 @@ class ImagesContent extends React.Component{
                                 <>
                                     <h2 key={img} className="comment-title" >kopop</h2>
                                     <p className="comments">kodpkpodwk okdpwqdpwok jodpwjq</p>
-                                    <small className="comments">12th June 2020</small>
+                                    <small style={{color: 'rgba(0,0,0,0.6)'}} className="comments">12th June 2020</small>
                                     <br />
                                 </>
                             )
@@ -81,4 +79,4 @@ class ImagesContent extends React.Component{
     }
 }
 
-export default ImagesContent;
+export default VideosContent;

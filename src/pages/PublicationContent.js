@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import back from '../img/buttons_back.png';
 import '../styles/ImagesContent.css';
-import image from '../img/content_img.png';
 import post from '../img/post.png';
 
 const images = [
@@ -12,7 +11,7 @@ const images = [
     'sd'
 ];
 
-class ImagesContent extends React.Component{
+class PublicationContent extends React.Component{
     render() {
         return(
             <div className="page-content">
@@ -27,8 +26,9 @@ class ImagesContent extends React.Component{
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
+                <br />
+                <small className="description-footer">Author, Publication, year, 330</small>
                 <br />
                 <br />
                 <br />
@@ -38,13 +38,12 @@ class ImagesContent extends React.Component{
                 <br />
                 <div className="images-container">
         
-                    {
-                        images.map( img => {
-                            return(
-                                <img src={image} alt="content-image"/>
-                            )
-                        })
-                    }
+               <iframe 
+                 width="420" 
+                 height="315"
+                 src=""
+                 title="document viewer" 
+                 className="videos-frame" ></iframe>
                 </div>
                 <br />
                 <br />
@@ -66,7 +65,7 @@ class ImagesContent extends React.Component{
                                 <>
                                     <h2 key={img} className="comment-title" >kopop</h2>
                                     <p className="comments">kodpkpodwk okdpwqdpwok jodpwjq</p>
-                                    <small className="comments">12th June 2020</small>
+                                    <small style={{color: 'rgba(0,0,0,0.6)'}} className="comments">12th June 2020</small>
                                     <br />
                                 </>
                             )
@@ -81,4 +80,4 @@ class ImagesContent extends React.Component{
     }
 }
 
-export default ImagesContent;
+export default PublicationContent;
