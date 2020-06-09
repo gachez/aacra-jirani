@@ -55,7 +55,7 @@ class ImagesContent extends React.Component{
                     <Navbar />
                     <br />
                     <br />
-                    <Link to={"/"}><img src={back} alt="back" className="back"/></Link>
+                    <Link className="back" to={"/"}><img src={back} alt="back" /></Link>
                     <span className="content-title" dangerouslySetInnerHTML={{ __html: this.state.images.title.rendered}}></span>
                     <br />
                     <br />

@@ -10,6 +10,26 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 
+const categories = [
+    'African games',
+    'Animation',
+    'Architecture', 
+    'Dance',
+    'Decorative arts',
+    'installations',
+    'painting',
+    'pottery'
+];
+
+const years = [
+    2020,
+    2019,
+    2018,
+    2017,
+    2016,
+    2015,
+    2014
+]
 
 class Videos extends React.Component {
     state={
@@ -26,7 +46,9 @@ class Videos extends React.Component {
         selectedCategory: 'Select category',
         selectedDiscussion: 'Select discussion',
         selectedYear: 'Select a year',
-        defaultVideos: []
+        defaultVideos: [],
+        subtitle: 'none',
+        subtitle2: 'none'
     }
  
     componentDidMount(){
@@ -60,16 +82,16 @@ class Videos extends React.Component {
           toggleDropdown = (val) =>{
              switch(val){
                  case 'category':
-                      this.state.filterCategory === 'none' ? this.setState({filterCategory: 'block'}) : this.setState({filterCategory: 'none'})
+                      this.state.filterCategory === 'none' ? this.setState({filterCategory: 'grid'}) : this.setState({filterCategory: 'none'})
                       break;
  
                  
                  case 'discussion': 
-                      this.state.filterDiscussion === 'none' ? this.setState({filterDiscussion: 'block'}) : this.setState({filterDiscussion: 'none'})
+                      this.state.filterDiscussion === 'none' ? this.setState({filterDiscussion: 'grid'}) : this.setState({filterDiscussion: 'none'})
                       break;     
   
                   case 'year': 
-                      this.state.filterYear === 'none' ? this.setState({filterYear: 'block'}) : this.setState({filterYear: 'none'})
+                      this.state.filterYear === 'none' ? this.setState({filterYear: 'grid'}) : this.setState({filterYear: 'none'})
                       break;    
   
                   default: 
@@ -77,94 +99,7 @@ class Videos extends React.Component {
              }
          }
  
-                 // function that grabs value of an option and highlights it then changes state according to filter and filters the grid of images
-                 onSelect = (classname, index, placeholder) =>{
-                     let selectedVal = document.getElementsByClassName(classname)[index].textContent;
-                     let filterCategoryArr = this.state.videos.filter( video => video.acf['discipline'].toLowerCase() === selectedVal.toLowerCase());
-                     let filterYearArr = [] 
-                     let filterDiscussionArr = []
-                     if(true){
- 
-                      filterYearArr =  this.state.selectedCategory !== 'Select category' ? filterCategoryArr.filter( video => video.acf['year'] === selectedVal) : this.state.defaultVideos.filter( video => video.acf['year'] === selectedVal);
-                      filterDiscussionArr =  this.state.selectedCategory !== 'Select category' ? filterDiscussionArr.filter( video => video.acf['discussion'] === selectedVal) : this.state.defaultVideos.filter( video => video.acf['discussion'] === selectedVal);                   
- 
-                 }                   
-                    
-                     if(placeholder === 'placeholder-category'){
-                         //set the necessary states
-                         this.setState({
-                             selectedCategory: selectedVal,
-                             videos: filterCategoryArr
-                         });
-         
-                         // set the filter colors
-                         document.getElementById(placeholder).style.color = '#ff321a';
-                         document.getElementById('category').style.borderColor = '#ff321a';
-         
-                         //check if any data found and give feedback
-                         if(filterCategoryArr.length < 1) {
-                             alert('No Videos found in the ' + selectedVal + ' category');
-                             this.setState({
-                                 videos : this.state.defaultVideos,
-                                 selectedCategory: 'Select a category'
-                             });
-                             document.getElementById('placeholder-category').style.color = '#000';
-                             document.getElementById('category').style.borderColor = '#000';
-                         }
-                         console.log('Success: Videos found under the category')
-                        
-                     }
- 
-                     if(placeholder === 'placeholder-discussion'){
-                         this.setState({
-                             selectedDiscussion: selectedVal
-                         });
-         
-                         document.getElementById(placeholder).style.color = '#ff321a';
-                         document.getElementById('discussion').style.borderColor = '#ff321a';
-         
-                         //check if any data found and give feedback
-                         if(filterDiscussionArr.length < 1) {
-                           alert('No Videos found for tagged: ' + selectedVal  );
-                           this.setState({
-                               videos : this.state.defaultVideos,
-                               selectedDiscussion: 'Select discussion'
-                            });
-                            document.getElementById('placeholder-discussion').style.color = '#000';
-                            document.getElementById('placeholder-year').style.color = '#000';
-                            document.getElementById('discussion').style.borderColor = '#000';
-                            document.getElementById('discussion').style.borderColor = '#000';
-                         }
-                         console.log('Success videos found under the discussions filter')
-                        
-                     }
-         
-                     if(placeholder === 'placeholder-year'){
-                         this.setState({
-                             selectedYear: selectedVal
-                         });
-         
-                         document.getElementById(placeholder).style.color = '#ff321a';
-                         document.getElementById('year').style.borderColor = '#ff321a';
-         
-                         //check if any data found and give feedback
-                         if(filterYearArr.length < 1) {
-                           alert('No Videos found for the year: ' + selectedVal  );
-                           this.setState({
-                               videos : this.state.defaultVideos,
-                               selectedYear: 'Select a year',
-                               selectedCategory: 'Select category'
-                            });
-                            document.getElementById('placeholder-category').style.color = '#000';
-                            document.getElementById('placeholder-year').style.color = '#000';
-                            document.getElementById('year').style.borderColor = '#000';
-                            document.getElementById('category').style.borderColor = '#000';
-                         }
-                         console.log('Success videos found under the category')
-                     }
-         
-                   
-                 }
+        
          
          
                  //function that filters array according to searchbox text
@@ -176,6 +111,7 @@ class Videos extends React.Component {
  
                     render(){
                         if(this.state.isLoaded){
+                            console.log(this.state.videos)
                             return (
                                 <div>
                                 <Navbar />
@@ -187,6 +123,10 @@ class Videos extends React.Component {
                                             </Col>
                                             <Col xs={8} id="second-column" >
                                                 <span  id="image-title">Contemporary African Art: VIDEOS</span> 
+                                                <br />
+                                                <p className="sub-title" style={{display: this.state.subtitle}}>Showing results for "<strong style={{fontSize: '16px', color: 'red'}}>{this.state.searchText}</strong>" </p>
+                                     <p className="sub-title" style={{display: this.state.subtitle2}}>Showing results for "<strong style={{fontSize: '16px', color: 'red'}}>{this.state.selectedCategory}</strong>" for year "<strong>{this.state.selectedYear === "Select a year" ? "" : this.state.selectedYear}</strong>"</p>
+                                        <br />
                                                 <section id="images-grid">
                                                     {
                                                         this.state.videos.map( img => {
@@ -219,20 +159,42 @@ class Videos extends React.Component {
                                                 position: 'absolute',
                                                 top: '138px',
                                                 right: '50px'
-                                            }}>
-                                            <span>Select a category</span>
+                                            }}
+                                            onClick={
+                                                () =>{
+                                                    this.toggleDropdown('category')
+                                                }
+                                            }
+                                            >
+                                            <span className="category-select">{this.state.selectedCategory}</span>
                                             <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M6 9L12 15L18 9" stroke="#FF321A" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M6 9L12 15L18 9" stroke="#FF321A" strokeLinecap="round" strokeLinejoin="round"/>
                                                 </svg>
                                             </div>
                                             <div className="dropdown-box" style={{
-                                                top: '183px'
+                                                top: '183px',
+                                                display: this.state.filterCategory
                                             }}>
-                                                <span>Decorative arts</span>
-                                                <span>Decorative arts</span>
-                                                <span>Decorative arts</span>
-                                                <span>Decorative arts</span>
-                                                <span>Decorative arts</span>
+                                                {
+                                          categories.map((category, index) => {
+                                
+                                
+                                    return(  <span className="category-span" key={index} onClick={
+                                        () => {
+                                            
+                                            this.setState({
+                                                selectedCategory: document.getElementsByClassName('category-span')[index].textContent,
+                                                filterCategory: 'none',
+                                                subtitle2: 'block',
+                                                videos: this.state.videos.filter(image => image.acf['discipline'].toLowerCase().includes(document.getElementsByClassName('category-span')[index].textContent.toLowerCase()))
+                                            })
+
+                                            document.getElementsByClassName('category-select')[0].style.color="#FF321A"
+
+                                            }} style={{width: '100%'}}>{category}</span>)
+                                            })
+
+                                            }
                                             </div>
                                             
                                             <br />
@@ -240,42 +202,96 @@ class Videos extends React.Component {
                                                 position: 'absolute',
                                                 top: '218px',
                                                 right: '50px'
-                                            }}>
-                                            <span>Select a discussion</span>
+                                            }}
+                                            onClick={() => {
+                                                this.toggleDropdown('discussion')
+                                            }}
+                                            >
+                                            <span className="discussion-select">{this.state.selectedDiscussion}</span>
                                             <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M6 9L12 15L18 9" stroke="#FF321A" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M6 9L12 15L18 9" stroke="#FF321A" strokeLinecap="round" strokeLinejoin="round"/>
                                                 </svg>
                                             </div>
                                             <div className="dropdown-box" style={{
-                                                top: '263px'
+                                                top: '263px',
+                                                display: this.state.filterDiscussion
                                             }}>
-                                                <span>Decorative arts</span>
-                                                <span>Decorative arts</span>
-                                                <span>Decorative arts</span>
-                                                <span>Decorative arts</span>
-                                                <span>Decorative arts</span>
-                                            </div>
-                                            <br />
-                                            <div className="category-box" style={{
-                                                position: 'absolute',
-                                                top: '298px',
-                                                right: '50px'
-                                            }}>
-                                            <span>Select a year</span>
+                                                         {
+                                          categories.map((category, index) => {
+                                
+                                
+                                            return(  <span className="discussion-span" key={index} onClick={
+                                                () => {
+                                                    
+                                                    this.setState({
+                                                        selectedDiscussion: document.getElementsByClassName('discussion-span')[index].textContent,
+                                                        filterCategory: 'none',
+                                                        subtitle2: 'block',
+                                                        videos: this.state.videos.filter(image => image.acf['discussion'].toLowerCase().includes(document.getElementsByClassName('discussion-span')[index].textContent.toLowerCase()))
+                                                    })
+
+                                                    document.getElementsByClassName('discussion-select')[0].style.color="#FF321A"
+
+                                                    }} style={{width: '100%'}}>{category}</span>)
+                                                    })
+
+                                                    }
+                                                    </div>
+                                                    <br />
+                                                    <div className="category-box" style={{
+                                                        position: 'absolute',
+                                                        top: '298px',
+                                                        right: '50px'
+                                                    }}
+                                                    onClick={
+                                                        () => {
+                                                            this.toggleDropdown('year')
+                                                        }
+                                                    }
+                                                    >
+
+                                            <span className="year-select">{this.state.selectedYear}</span>
                                             <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M6 9L12 15L18 9" stroke="#FF321A" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M6 9L12 15L18 9" stroke="#FF321A" strokeLinecap="round" strokeLinejoin="round"/>
                                                 </svg>
                                             </div>
                                             <div className="dropdown-box" style={{
-                                                top: '343px'
+                                                top: '343px',
+                                                display: this.state.filterYear
                                             }}>
-                                                <span>2020</span>
-                                                <span>2019</span>
-                                                <span>2018</span>
-                                                <span>2017</span>
-                                                <span>2016</span>
-                                                <span>2015</span>                    </div>
-                                            <img src={reset} alt="reset here" id="reset" />
+                                                {
+
+                                                years.map((year, index) => {
+                                                return(  <span key={index} className="year-span" onClick={() => {
+                                                    this.setState({
+                                                        selectedYear: document.getElementsByClassName('year-span')[index].textContent,
+                                                        filterYear: 'none',
+                                                        subtitle: 'block',
+                                                        videos: this.state.videos.filter(image => image.acf['year'] === document.getElementsByClassName('year-span')[index].textContent)
+                                                    })
+
+                                                    document.getElementsByClassName('year-select')[0].style.color="#FF321A"
+                                                }
+                                                }
+                                                style={{width: '100%'}}>{year}</span>)
+                                                })
+                                                }              </div>
+                                            <img src={reset} alt="reset here" id="reset" onClick={() => {
+                                document.getElementsByClassName('sub-title')[1].style.display="none";
+
+                                document.getElementsByClassName('category-select')[0].style.color="#000";
+                                document.getElementsByClassName('discussion-select')[0].style.color="#000";
+
+                                document.getElementsByClassName('year-select')[0].style.color="#000";
+
+                                this.setState({
+                                  videos: this.state.defaultVideos,
+                                  selectedCategory: 'Select a category',
+                                  selectedDiscussion: 'Select a discussion',
+                                  selectedYear: "Select a year",
+                                  subtitle2: 'none'
+                                })
+                            }} />
                         
                                             </Col>
                                         </Row>

@@ -12,10 +12,11 @@ function Navbar() {
         </Link>    
         
         <div id="collapsing-menu">
-            <span>Home</span>
-            <span>Donate</span>
-            <span>About</span>
-            <span>Contact</span>
+            <Link to={"/"} style={{textDecoration: 'none', coolor: '#000', listStyle: 'none'}}><span>Images</span></Link>
+            <Link to={"/videos"} style={{textDecoration: 'none', coolor: '#000'}}><span>Videos</span></Link>
+            <Link to={"/publications"} style={{textDecoration: 'none', coolor: '#000'}}><span>Publications</span></Link>
+            <Link to={"/donate"} ><span>Donate</span></Link>
+            <Link to={"/contact"}><span>Contact</span></Link>
         </div>
 
         <img id="open-menu-icon" src={menu} alt="open menu icon" width="100px" height="40px"/>

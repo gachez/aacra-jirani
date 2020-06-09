@@ -1,28 +1,54 @@
-import React from 'react';
-import cancel from '../img/buttons_cancel.png';
-import orangeback from '../img/orangeback.png';
-import back from '../img/buttons_back.svg';
-import next from '../img/next.png';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import nextorange from '../img/next.png';
+import nextburnt from '../img/nextburnt.png';
+import cancel from '../img/buttons_cancel.png';
+
+import orangeback from '../img/orangeback.png';
+import downIcon from '../img/downiconorange.png';
+
+import {Container, Col} from 'react-bootstrap';
 
 
-export default class ImagePreview extends React.Component{
+const images = [
+    'African games',
+    'Animation',
+    'Architecture', 
+    'Dance',
+    'Decorative arts',
+    'installations',
+    'painting',
+    'pottery'
+];
+
+const dropDownFontStyle = {
+    marginLeft: '15px',
+    marginTop: '26px',
+    fontFamily: 'Ubuntu',
+    fontSize: '14px',
+    fontStyle: 'normal',
+    fontStretch: 'normal',
+    lineHeight: 'normal',
+    letterSpacing: 'normal',
+    color: '#ffffff',
+    cursor: 'pointer'
+}
+
+export default class VideoUploadTag extends Component{
     state={
-        btnImg: next
+        btnImg: nextburnt
     }
     render(){
-        const title = localStorage.getItem('title')
-        const body = localStorage.getItem('body')
-        const image = localStorage.getItem('image')
-        return(
-            <div>
-               {/* top bar on page */}
-                <div style={{
-                    width: '100%',
-                    height: '95px',
-                    boxShadow: '0 3px 5px 0 rgba(0, 0, 0, 0.15)',
-                    backgroundColor:' #ffffff'
-                }}>
+       localStorage.clear() 
+    return(
+        <div>
+                            {/* top bar on page */}
+                            <div style={{
+                          width: '100%',
+                          height: '95px',
+                          boxShadow: '0 3px 5px 0 rgba(0, 0, 0, 0.15)',
+                          backgroundColor:' #ffffff'
+                    }}>
 
                     <p style={{
                         position:'absolute',
@@ -49,8 +75,8 @@ export default class ImagePreview extends React.Component{
                         
                     }}></div>
 
-                    {/* tags tag    */}
-                    <p style={{
+{/* tags tag                     */}
+<p style={{
                         position:'absolute',
                         left: '10.2%',
                          fontFamily: 'Ubuntu',
@@ -87,7 +113,7 @@ export default class ImagePreview extends React.Component{
                          fontStretch: 'normal',
                          lineHeight: 'normal',
                          letterSpacing: 'normal',
-                         color: '#373a3c' 
+                         color: '#8d8d8d' 
                     }}> Content</p>
 
                     {/* separation line */}
@@ -112,7 +138,7 @@ export default class ImagePreview extends React.Component{
                          fontStretch: 'normal',
                          lineHeight: 'normal',
                          letterSpacing: 'normal',
-                         color: '#373a3c' 
+                         color: '#8d8d8d' 
                     }}> Preview</p>
                     
                     
@@ -142,14 +168,15 @@ export default class ImagePreview extends React.Component{
                     }}> Upload</p>
 
                 {/* cancel icon */}
-                  <Link to={"/cancel-confirmation"}>
-                  <img src={cancel} style={{
+                <Link to={"/"}>
+                <img src={cancel} style={{
                         position: 'absolute',
                         left: '67.8%',
                         paddingTop: '28px'
                     }}/>
 
-                  </Link> 
+                </Link>
+                    
                     {/* separator line vertical */}
                     <div style={{
                         width: '1px',
@@ -161,7 +188,7 @@ export default class ImagePreview extends React.Component{
                     }}></div>
 
                     {/* back button burnt */}
-                    <Link to={"/add-image-content"}>
+                    <Link to={"/choose-content"}>
                     <img src={orangeback} style={{
                         position: 'absolute',
                         left: '79.5%',
@@ -170,122 +197,56 @@ export default class ImagePreview extends React.Component{
 
                     </Link>
                     
-                <Link to={"/image-content-upload"}>
-                <img  src={this.state.btnImg} style={{
+                    <Link to={"/add-video-content"}>
+                    <img id="next" src={this.state.btnImg} style={{
                         position: 'absolute',
                         left: '89%',
                         paddingTop: '28px'
-                    }}/>
-                </Link>
+                    }}/> 
+                    </Link>
                    
 
                     </div>
                     {/* top bar ends here */}
 
-                    {/* back button */}
-                    <img src={back} style={{
-                        position: 'absolute',
-                        top: '25.7%',
-                        left: '3.7%'
-                    }}/>
+                       {/* page title here */}
+                       <span className="title">Choose tags(Videos)</span>
 
-                    {/* page title here */}
-                    <p style={{
-                        position: 'absolute',
-                        top: '20.25%',
-                        left: '13%',
-                         fontFamily: 'Ubuntu',
-                         fontSize: '30px',
-                         fontWeight: 600,
-                         fontStyle: 'normal',
-                         fontStretch: 'normal',
-                         lineHeight: 'normal',
-                         letterSpacing:' normal',
-                         color: '#000000'
-                    }}>{title}</p>
+             <span className="content-types-category">Category</span>
+                <span className="content-types-year" style={{ left: '60%' }}>Year created</span>
+                <section className="tags-container">
+                    {
 
-                    {/* paragraph section */}
-                    <p style={{
-                        position: 'absolute',
-                        top: '30.5%',
-                        left: '13%',
-                         width: '73.2%',
-                         height: '96px',
-                         fontFamily: 'Ubuntu',
-                         fontSize: '18px',
-                         fontWeight: 300,
-                         fontStyle: 'normal',
-                         fontStretch: 'normal',
-                         lineHeight: 1.35,
-                         letterSpacing: 'normal',
-                         color: '#000000'
-                    }}> {body}</p>
+                        images.map(img => {
+                            return(
+                            <div className="tags" >{img}</div>    
+                            )
+                        })
+                    }
+                </section>
 
-                        {/* images section */}
-                        <section id="images-container">
-                        <div style={{
-                            position: 'absolute',
-                            top: '50%',
-                            left:'13%',
-                              width: '73.2%',
-                              height: '550px',
-                              backgroundImage: `url(${image})`,
-                              backgroundRepeat: 'no-repeat',
-                              backgroundSize: 'cover'
-                        }}></div>
-
-<div style={{
-                            position: 'absolute',
-                            top: '125%',
-                            left:'13%',
-                              width: '73.2%',
-                              height: '550px',
-                              background: 'grey'
-                        }}></div>
-
-                        </section>
-
-                        {/* comment section */}
-                        <div style={{
-                            position: 'absolute',
-                            top: '205%',
-                            left: '13%',
-                              width: '73.2%',
-                              height: '459px',
-                              boxShadow: '0 0 5px 0 rgba(0, 0, 0, 0.25)',
-                              backgroundColor: '#ffffff'
-                        }}>
-
-                        {/* comment box */}
-                        <input style={{
-                            position: 'absolute',
-                            top: '10.9%',
-                            left: '7.5%',
-                            width: '85%',
-                            height: '175px',
-                            border: 'solid 1px #373a3c'
-                        }}/>
+                <div className="content-types-year"> Discussion</div>
+                <section className="tags-container" style={{
+                    position: 'absolute',
+                    left: '512px'
+                }}>
+                    {
+                         images.map(img => {
+                            return(
+                            <div className="tags" >{img}</div>    
+                            )
+                        })
+                    }
+                </section>
+                <div className="year-created-box" 
+                  style={{
+                      position: 'absolute',
+                      left: '60%'
+                  }}
+                >Year created</div>
 
 
-                       <button style={{
-                           position:'absolute',
-                           left: '83.5%',
-                           top: '53.4%',
-                           border: 'none',
-                           width: '100px',
-                           height: '40px',
-                           backgroundColor: '#ff8d80',
-                           fontFamily: 'Ubuntu',
-                           fontSize: '14px',
-                           fontWeight: 500,
-                           fontStyle: 'normal',
-                           fontStretch: 'normal',
-                           lineHeight: 'normal',
-                           letterSpacing: '-0.14px',
-                           color: '#ffffff'
-                       }}>POST</button>     
-                        </div>
-            </div>
-        )
+        </div>
+    )
     }
 }

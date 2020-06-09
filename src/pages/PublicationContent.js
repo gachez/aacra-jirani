@@ -42,7 +42,7 @@ class PublicationContent extends React.Component{
                     <Navbar />
                     <br />
                     <br />
-                    <Link to={"/publications"}><img src={back} alt="back" className="back"/></Link>
+                    <Link to={"/publications"} className="back" ><img src={back} alt="back" /></Link>
                     <span className="content-title" dangerouslySetInnerHTML={{ __html: this.state.publication.title.rendered}}></span>
                     <br />
                     <br />
@@ -63,7 +63,7 @@ class PublicationContent extends React.Component{
                     navbarOnTop={true}
                     scale={1}
                 document={{
-                    url: 'https://arxiv.org/pdf/quant-ph/0410100.pdf',
+                    url: 'https://orientationtrip2011.files.wordpress.com/2010/08/text-contemporary-african-art-since-1980-by-okwui-enwezor-chika-okeke-agulu.pdf',
                 }}
             />
                    {/* <iframe 

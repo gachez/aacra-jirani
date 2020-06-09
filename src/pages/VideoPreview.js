@@ -1,28 +1,32 @@
-import React from 'react';
-import cancel from '../img/buttons_cancel.png';
-import orangeback from '../img/orangeback.png';
-import back from '../img/buttons_back.svg';
-import next from '../img/next.png';
-import {Link} from 'react-router-dom';
+import React from 'react'
+import cancel from '../img/buttons_cancel.png'
+import orangeback from '../img/orangeback.png'
+import back from '../img/buttons_back.svg'
+import next from '../img/next.png'
+import {Link} from 'react-router-dom'
+
+import leftwhite from '../img/icons_left.png'
+import rightwhite from '../img/icons_right.png'
+import downloadicon from '../img/icons_download.png'
+import download from '../img/download_text.png'
+import max from '../img/icons_maximize.png'
 
 
-export default class ImagePreview extends React.Component{
+
+export default class VideoPreview extends React.Component{
     state={
         btnImg: next
     }
     render(){
-        const title = localStorage.getItem('title')
-        const body = localStorage.getItem('body')
-        const image = localStorage.getItem('image')
         return(
             <div>
-               {/* top bar on page */}
-                <div style={{
-                    width: '100%',
-                    height: '95px',
-                    boxShadow: '0 3px 5px 0 rgba(0, 0, 0, 0.15)',
-                    backgroundColor:' #ffffff'
-                }}>
+                                  {/* top bar on page */}
+                                  <div style={{
+                          width: '100%',
+                          height: '95px',
+                          boxShadow: '0 3px 5px 0 rgba(0, 0, 0, 0.15)',
+                          backgroundColor:' #ffffff'
+                    }}>
 
                     <p style={{
                         position:'absolute',
@@ -49,8 +53,8 @@ export default class ImagePreview extends React.Component{
                         
                     }}></div>
 
-                    {/* tags tag    */}
-                    <p style={{
+{/* tags tag                     */}
+<p style={{
                         position:'absolute',
                         left: '10.2%',
                          fontFamily: 'Ubuntu',
@@ -161,16 +165,13 @@ export default class ImagePreview extends React.Component{
                     }}></div>
 
                     {/* back button burnt */}
-                    <Link to={"/add-image-content"}>
                     <img src={orangeback} style={{
                         position: 'absolute',
                         left: '79.5%',
                         paddingTop: '28px'
                     }}/>
 
-                    </Link>
-                    
-                <Link to={"/image-content-upload"}>
+                <Link to={"/video-content-upload"}>
                 <img  src={this.state.btnImg} style={{
                         position: 'absolute',
                         left: '89%',
@@ -202,90 +203,66 @@ export default class ImagePreview extends React.Component{
                          lineHeight: 'normal',
                          letterSpacing:' normal',
                          color: '#000000'
-                    }}>{title}</p>
+                    }}>{localStorage.getItem('title')}</p>
 
-                    {/* paragraph section */}
-                    <p style={{
-                        position: 'absolute',
-                        top: '30.5%',
-                        left: '13%',
-                         width: '73.2%',
-                         height: '96px',
-                         fontFamily: 'Ubuntu',
-                         fontSize: '18px',
-                         fontWeight: 300,
-                         fontStyle: 'normal',
-                         fontStretch: 'normal',
-                         lineHeight: 1.35,
-                         letterSpacing: 'normal',
-                         color: '#000000'
-                    }}> {body}</p>
-
-                        {/* images section */}
-                        <section id="images-container">
-                        <div style={{
+                    
+                        {/* synopsis title */}
+                        <p style={{
                             position: 'absolute',
-                            top: '50%',
-                            left:'13%',
-                              width: '73.2%',
-                              height: '550px',
-                              backgroundImage: `url(${image})`,
-                              backgroundRepeat: 'no-repeat',
-                              backgroundSize: 'cover'
-                        }}></div>
-
-<div style={{
-                            position: 'absolute',
-                            top: '125%',
-                            left:'13%',
-                              width: '73.2%',
-                              height: '550px',
-                              background: 'grey'
-                        }}></div>
-
-                        </section>
-
-                        {/* comment section */}
-                        <div style={{
-                            position: 'absolute',
-                            top: '205%',
+                            top: '33%',
                             left: '13%',
-                              width: '73.2%',
-                              height: '459px',
-                              boxShadow: '0 0 5px 0 rgba(0, 0, 0, 0.25)',
-                              backgroundColor: '#ffffff'
+                              fontFamily: 'Ubuntu',
+                              fontSize: '18px',
+                              fontWeight: 700,
+                              fontStyle: 'normal',
+                              fontStretch: 'normal',
+                              lineHeight: 1.17,
+                              letterSpacing: 'normal',
+                              color: 'var(--charcoal-grey)'
+                        }}>Description</p>
+
+                        <p style={{
+                            position:'absolute',
+                            top: '37%',
+                            left: '13%',
+                            width: '73.5%',
+                            height: '96px',
+                            fontFamily: 'Ubuntu',
+                            fontSize: '18px',
+                            fontWeight: 100,
+                            fontStyle: 'normal',
+                            fontStretch: 'normal',
+                            lineHeight: 1.35,
+                            letterSpacing: 'normal',
+                            color: 'var(--charcoal-grey)'
+                          
                         }}>
-
-                        {/* comment box */}
-                        <input style={{
-                            position: 'absolute',
-                            top: '10.9%',
-                            left: '7.5%',
-                            width: '85%',
-                            height: '175px',
-                            border: 'solid 1px #373a3c'
-                        }}/>
+                        {localStorage.getItem('description')}
+                        </p>
 
 
-                       <button style={{
-                           position:'absolute',
-                           left: '83.5%',
-                           top: '53.4%',
-                           border: 'none',
-                           width: '100px',
-                           height: '40px',
-                           backgroundColor: '#ff8d80',
-                           fontFamily: 'Ubuntu',
-                           fontSize: '14px',
-                           fontWeight: 500,
-                           fontStyle: 'normal',
-                           fontStretch: 'normal',
-                           lineHeight: 'normal',
-                           letterSpacing: '-0.14px',
-                           color: '#ffffff'
-                       }}>POST</button>     
+                {/* video */}
+               
+                <iframe
+                style={{
+                    position: 'absolute',
+                    top:'65%',
+                    left: '13.4%',
+                    backgroundColor: 'black',
+                    marginBottom: '200px'
+                  
+                }} 
+                width="72%" 
+                height="550px" 
+                src={localStorage.getItem('url')} 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen>
+
+                </iframe>
+     
                         </div>
-            </div>
+            
         )
     }
 }

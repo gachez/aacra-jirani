@@ -1,0 +1,52 @@
+#page-title{
+    position: absolute;
+    top: 22.7%;
+    left:9.5%;
+    height: 35px;
+    font-family: Ubuntu;
+    font-size: 30px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #373a3c;
+}
+
+#copy-write{
+
+     position: absolute;
+     left: 9.7%;
+     top: 33%;
+      width: 535px;
+      height: 143px;
+      font-family: Ubuntu;
+      line-height: 30px;
+      font-size: 18px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+    
+      letter-spacing: normal;
+      color: #373a3c;
+}
+
+#visa{
+
+    position: absolute;
+    top: 36.5%;
+    left: 58.3%;
+}
+
+#mastercard{
+    position: absolute;
+    top: 36.5%;
+    left: 69.3%;
+}
+
+#paypal{
+
+    position: absolute;
+    top: 36.5%;
+    left: 80.2%;
+}

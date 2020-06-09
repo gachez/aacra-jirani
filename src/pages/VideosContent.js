@@ -38,7 +38,7 @@ class VideosContent extends React.Component{
                     <Navbar />
                     <br />
                     <br />
-                    <Link to={"/videos"}><img src={back} alt="back" className="back"/></Link>
+                    <Link to={"/videos"}  className="back"><img src={back} alt="back"/></Link>
                     <span className="content-title" dangerouslySetInnerHTML={{ __html: this.state.videos.title.rendered}}></span>
                     <br />
                     <br />

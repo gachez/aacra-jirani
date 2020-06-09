@@ -15,15 +15,26 @@ import axios from 'axios';
 import {Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner'
 
-const images = [
-    'dkopweokp',
-    'dkopweokp',
-    'dkopweokp',
-    'dkopweokp',
-    'dkopweokp',
-    'dkopweokp',
-    'dkopweokp'
+const categories = [
+    'African games',
+    'Animation',
+    'Architecture', 
+    'Dance',
+    'Decorative arts',
+    'installations',
+    'painting',
+    'pottery'
 ];
+
+const years = [
+    2020,
+    2019,
+    2018,
+    2017,
+    2016,
+    2015,
+    2014
+]
 
 class Home extends React.Component{
 
@@ -40,7 +51,10 @@ class Home extends React.Component{
         textBox: '',
         selectedCategory: 'Select category',
         selectedYear: 'Select a year',
-        defaultImages: []
+        defaultImages: [],
+        searchText: '',
+        subtitle: 'none',
+        subtitle2: 'none'
      }
  
      componentDidMount(){
@@ -63,7 +77,8 @@ class Home extends React.Component{
         //get search text 
         getSearch = (e) =>{
          this.setState({
-             searchText: e.target.value
+             searchText: e.target.value,
+             subtitle: 'block'
          })
          console.log(this.state.searchText)
        
@@ -73,11 +88,11 @@ class Home extends React.Component{
         toggleDropdown = (val) =>{
             switch(val){
                 case 'category':
-                     this.state.filterCategory === 'none' ? this.setState({filterCategory: 'block'}) : this.setState({filterCategory: 'none'})
+                     this.state.filterCategory === 'none' ? this.setState({filterCategory: 'grid'}) : this.setState({filterCategory: 'none'})
                      break;
  
                  case 'year': 
-                     this.state.filterYear === 'none' ? this.setState({filterYear: 'block'}) : this.setState({filterYear: 'none'})
+                     this.state.filterYear === 'none' ? this.setState({filterYear: 'grid'}) : this.setState({filterYear: 'none'})
                      break;    
  
                  default: 
@@ -109,11 +124,17 @@ class Home extends React.Component{
          //     });
          // }
         
- 
+         resetFilters = () => {
+           window.location.reload()
+         }
+
+        
 
     render(){
         if(this.state.isLoaded){
-            console.log(this.state.images)
+            console.log(this.state.images);
+
+
             return (
                 <div>
         
@@ -130,21 +151,47 @@ class Home extends React.Component{
                             </Col>
                             <Col xs={8} id="second-column" >
                                 <img src={imagestitle} alt="images title" id="image-title" />
+                                <br />
+            <p className="sub-title" style={{display: this.state.subtitle}}>Showing results for "<strong style={{fontSize: '16px', color: 'red'}}>{this.state.searchText}</strong>" </p>
+                                     <p className="sub-title" style={{display: this.state.subtitle2}}>Showing results for "<strong style={{fontSize: '16px', color: 'red'}}>{this.state.selectedCategory}</strong>" for year "<strong>{this.state.selectedYear === "Select a year" ? "" : this.state.selectedYear}</strong>"</p>
+
                                 <section id="images-grid">
                                     {
-                                          this.state.images.map( img => {
-                                            return(
+                                        this.state.searchText.length < 1 ?
+                                        this.state.images.map( img => {
+                                          return(
+                                            <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
+                                              () =>{
+                                                  window.location.href="/images-content"
+                                                  localStorage.setItem('id', img.id)
+                                              }
+                                          }>
+                                            <img  src={img._embedded['wp:featuredmedia']['0'].source_url} style={{
+                                                height: '200px'
+                                            }} width="200px" height="200px" alt="images thumbnail"/>
+                                            <span style={{padding: '10px', fontSize: '12px'}} dangerouslySetInnerHTML={{__html: img.title.rendered}}></span>    
+                                              </div>  
+                                          )
+                                      }) :
+                                      
+                                      this.state.images.filter( thumb => {
+                                          return(
+                                          thumb.title.rendered.toLowerCase().indexOf(this.state.searchText.toLowerCase()) >= 0
+                                      )}).map( img => {
+                                          return(
                                               <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
                                                 () =>{
                                                     window.location.href="/images-content"
                                                     localStorage.setItem('id', img.id)
                                                 }
                                             }>
-                                              <img  src={img._embedded['wp:featuredmedia']['0'].source_url} width="200px" height="200px" alt="images thumbnail"/>
+                                              <img  src={img._embedded['wp:featuredmedia']['0'].source_url} style={{
+                                                  height: '200px'
+                                              }} width="200px" height="200px" alt="images thumbnail"/>
                                               <span style={{padding: '10px', fontSize: '12px'}} dangerouslySetInnerHTML={{__html: img.title.rendered}}></span>    
                                                 </div>  
                                             )
-                                        })         
+                                      })
                                     }
                                                      
                                 </section>
@@ -152,7 +199,7 @@ class Home extends React.Component{
                             <Col id="third-column">
         
                               <div id="search-input">
-                                  <input style={{position: 'absolute', right: '50px', borderBottom: 'solid 1px black',width: '200px'}} placeholder="Search title, artist" type="textbox"/>
+                                  <input style={{position: 'absolute', right: '50px', borderBottom: 'solid 1px black',width: '200px'}} placeholder="Search title, artist" type="textbox" onChange={this.getSearch}/>
                                   <img id="searchIcon" src={searchIcon} width="18px" height="18px" />
                               </div>
         
@@ -164,45 +211,92 @@ class Home extends React.Component{
                                  position: 'absolute',
                                  top: '138px',
                                  right: '50px'
-                            }}>
-                               <span>Select a category</span>
-                               <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 9L12 15L18 9" stroke="#FF321A" stroke-linecap="round" stroke-linejoin="round"/>
+                            }}
+                            onClick={() => {this.toggleDropdown('category')}}
+                            >
+                               <span className="category-select">{this.state.selectedCategory}</span>
+                               <svg width="20" height="20" className="iconDown"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="#FF321A" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
                             <div className="dropdown-box" style={{
-                                top: '183px'
-                            }}>
-                                <span>Decorative arts</span>
-                                <span>Decorative arts</span>
-                                <span>Decorative arts</span>
-                                <span>Decorative arts</span>
-                                <span>Decorative arts</span>
+                                top: '183px',
+                                display: this.state.filterCategory,
+
+                            }}> {
+                                categories.map((category, index) => {
+                                
+                                
+                                    return(  <span className="category-span" key={index} onClick={
+
+                                        
+                                        () => {
+                                            
+                                            this.setState({
+                                                selectedCategory: document.getElementsByClassName('category-span')[index].textContent,
+                                                filterCategory: 'none',
+                                                subtitle2: 'block',
+                                                images: this.state.images.filter(image => image.acf['category'].toLowerCase().includes(document.getElementsByClassName('category-span')[index].textContent.toLowerCase()))
+                                            })
+
+                                            document.getElementsByClassName('category-select')[0].style.color="#FF321A"
+
+                                }} style={{width: '100%'}}>{category}</span>)
+                                })
+
+                                }
                             </div>
                             <br />
                             <div className="category-box" style={{
                                  position: 'absolute',
                                  top: '218px',
                                  right: '50px'
-                              }}>
-                               <span>Select a year</span>
+                              }}
+                              
+                            onClick={() => {this.toggleDropdown('year')}}
+                              >
+                               <span className="year-select">{this.state.selectedYear}</span>
                                <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 9L12 15L18 9" stroke="#FF321A" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 9L12 15L18 9" stroke="#FF321A" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
                             <div className="dropdown-box" style={{
-                                top: '263px'
-                            }}>
-                                <span>2020</span>
-                                <span>2019</span>
-                                <span>2018</span>
-                                <span>2017</span>
-                                <span>2016</span>
-                                <span>2015</span>
+                                top: '263px',
+                                display: this.state.filterYear
+                            }}
+                            >    
+                            {
+
+                                years.map((year, index) => {
+                                return(  <span key={index} className="year-span" onClick={() => {
+                                    this.setState({
+                                        selectedYear: document.getElementsByClassName('year-span')[index].textContent,
+                                        filterYear: 'none',
+                                        images: this.state.images.filter(image => image.acf['year'] === document.getElementsByClassName('year-span')[index].textContent)
+                                    })
+
+                                    document.getElementsByClassName('year-select')[0].style.color="#FF321A"
+                                }
+                            }
+                             style={{width: '100%'}}>{year}</span>)
+                                })
+                                }
                             </div>
                             <br />
                             
-                            <img src={reset} alt="reset here" id="reset" />
+                            <img src={reset} alt="reset here" id="reset" onClick={() => {
+                                document.getElementsByClassName('sub-title')[1].style.display="none";
+
+                                document.getElementsByClassName('category-select')[0].style.color="#000";
+
+                                document.getElementsByClassName('year-select')[0].style.color="#000";
+
+                                this.setState({
+                                  images: this.state.defaultImages,
+                                  selectedCategory: 'Select a category',
+                                  selectedYear: "Select a year"
+                                })
+                            }} />
         
                             </Col>
                         </Row>
@@ -219,7 +313,7 @@ class Home extends React.Component{
                     
         
                     <br />
-                    <br />
+                    <br /> 
                     <br />
                     
                     <Footer />

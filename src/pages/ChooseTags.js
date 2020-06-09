@@ -12,7 +12,7 @@ import {Container, Col} from 'react-bootstrap';
 const images = [
     'African games',
     'Animation',
-    'Architecture',
+    'Architecture', 
     'Dance',
     'Decorative arts',
     'installations',
