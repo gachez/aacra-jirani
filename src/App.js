@@ -11,7 +11,7 @@ import ChooseContent from './pages/ChooseContent';
 import ChooseTags from './pages/ChooseTags';
 import ImageUploadContent from './pages/ImageUploadContent';
 import AddImageContent from './pages/AddImageContent';
-
+import ImagePreview from './pages/ImagePreview';
 
 const App = () =>{
                 return(
@@ -27,6 +27,7 @@ const App = () =>{
                     <Route exact path={"/choose-tags"} component={ChooseTags}></Route>
                     <Route exact path={"/image-upload-content"} component={ImageUploadContent}></Route>
                     <Route exact path={"/add-image-content"} component={AddImageContent}></Route>
+                    <Route exact path={"/image-preview"} component={ImagePreview}></Route>
 
                 </Switch>
             </BrowserRouter>

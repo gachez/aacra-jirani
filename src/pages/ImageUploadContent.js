@@ -1,10 +1,9 @@
 import React from 'react';
-import cancel from '../img/buttons_cancel.png';
-import orangeback from '../img/back.png';
 import preview from '../img/preview.png';
 import upload from '../img/upload.png';
 import {Link} from 'react-router-dom';
 import next from '../img/next-button.png';
+import Navbar from '../components/NavbarUpload';
 
 
 export default class ImageContentUpload extends React.Component{
@@ -23,18 +22,7 @@ export default class ImageContentUpload extends React.Component{
         return(
             <div>
                   {/* top bar on page */}
-                  <nav className="navbar">
-                    <div><span>Type</span>
-                    <span>Tags</span>
-                    <span>Content</span>
-                    <span>Preview</span>
-                    <span>Upload</span></div>
-
-                    <img className="cancel" src={cancel} alt="cancel"/>
-
-                    <img className="back" src={orangeback} alt="back"/>
-              
-                </nav>
+                  <Navbar />
                     {/* top bar ends here */}
 
                     {/* page title */}
