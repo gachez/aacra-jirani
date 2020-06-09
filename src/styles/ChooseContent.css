@@ -18,7 +18,7 @@
 
 .back{
     position: absolute;
-    left: 82.5%;
+    left: 82.5% !important;
 }
 
 .next{

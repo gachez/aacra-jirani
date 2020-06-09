@@ -43,7 +43,140 @@ export default class AddImageContent extends Component{
             }}>
                 
                     {/* top bar on page */}
-                    <NavbarUpload />
+                    <div style={{
+                          width: '100%',
+                          height: '95px',
+                          boxShadow: '0 3px 5px 0 rgba(0, 0, 0, 0.15)',
+                          backgroundColor:' #ffffff'
+                    }}>
+
+                    <p style={{
+                        position:'absolute',
+                        left: '3.7%',
+                         fontFamily: 'Ubuntu',
+                         fontSize: '13px',
+                         paddingTop: '25px',
+                         fontWeight: 700,
+                         fontStyle: 'normal',
+                         fontStretch: 'normal',
+                         lineHeight: 'normal',
+                         letterSpacing: 'normal',
+                         color: '#373a3c'
+                    }}>Type</p>
+                  
+
+{/* tags tag                     */}
+<p style={{
+                        position:'absolute',
+                        left: '10.2%',
+                         fontFamily: 'Ubuntu',
+                         fontSize: '13px',
+                         paddingTop: '25px',
+                         fontWeight: 700,
+                         fontStyle: 'normal',
+                         fontStretch: 'normal',
+                         lineHeight: 'normal',
+                         letterSpacing: 'normal',
+                         color: '#373a3c'                    }}>Tags</p>
+                    
+
+
+                      
+
+                    <p style={{
+                        position:'absolute',
+                        left: '16.7%',
+                         fontFamily: 'Ubuntu',
+                         fontSize: '13px',
+                         paddingTop: '25px',
+                         fontWeight: 600,
+                         fontStyle: 'normal',
+                         fontStretch: 'normal',
+                         lineHeight: 'normal',
+                         letterSpacing: 'normal',
+                         color: '#373a3c' 
+                    }}> Content</p>
+
+                
+ 
+<p style={{
+                        position:'absolute',
+                        left: '24.7%',
+                         fontFamily: 'Ubuntu',
+                         fontSize: '13px',
+                         paddingTop: '25px',
+                         fontWeight: 600,
+                         fontStyle: 'normal',
+                         fontStretch: 'normal',
+                         lineHeight: 'normal',
+                         letterSpacing: 'normal',
+                         color: '#8d8d8d' 
+                    }}> Preview</p>
+                    
+                    
+               
+
+                <p style={{
+                        position:'absolute',
+                        left: '32.7%',
+                         fontFamily: 'Ubuntu',
+                         fontSize: '13px',
+                         paddingTop: '25px',
+                         fontWeight: 600,
+                         fontStyle: 'normal',
+                         fontStretch: 'normal',
+                         lineHeight: 'normal',
+                         letterSpacing: 'normal',
+                         color: '#8d8d8d' 
+                    }}> Upload</p>
+
+                {/* cancel icon */}
+                <Link to={"/upload-pin"}>
+                <img src={cancel} style={{
+                        position: 'absolute',
+                        left: '67.8%',
+                        paddingTop: '28px'
+                    }}/>
+
+                </Link>
+                
+                    {/* separator line vertical */}
+                    <div style={{
+                        width: '1px',
+                        height: '40px',
+                        backgroundColor:'black',
+                        position: 'absolute',
+                        left: '77%',
+                        top: '35px'
+                    }}></div>
+
+                    {/* back button burnt */}
+                    <Link to={"/image-upload-tag"}>
+                    <img src={orangeback} style={{
+                        position: 'absolute',
+                        left: '79.5%',
+                        paddingTop: '28px'
+                    }}/>
+
+                    </Link>
+                    
+                    <Link to={"/image-preview"}>
+                    <img  src={this.state.btnImg} style={{
+                        position: 'absolute',
+                        left: '89%',
+                        paddingTop: '28px'
+                    }} onClick={
+                        () =>{
+                            localStorage.setItem('title', document.getElementById('title').value )
+                            localStorage.setItem('body', document.getElementById('body-text').value)
+                            localStorage.setItem('image', this.state.imageUrl)
+
+                        }
+                    }/>
+
+                    </Link>
+                    
+                    </div>
                     {/* top bar ends here */}
                     <br />
                     {/* title input */}
@@ -97,7 +230,7 @@ export default class AddImageContent extends Component{
                         <p style={{
                             position: 'absolute',
                             left: '44.2%',
-                            top: '23%',
+                            top: '40%',
                             fontFamily: 'Ubuntu',
                             fontSize: '18px',
                             fontWeight: 600,

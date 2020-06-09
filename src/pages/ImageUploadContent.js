@@ -349,7 +349,7 @@ export default class ImageContentUpload extends React.Component{
 
                         let displayImage = window.URL.createObjectURL(localStorage.getItem('image'))
                     
-                        fetch('https://tengezastudios.co.ke/wp/wp-json/wp/v2/images',{
+                        fetch('https://tengezastudios.co.ke/wp-ckr/wp-json/wp/v2/images',{
                             method: "POST",
                             headers:{
                                 'Content-Type': 'application/json',

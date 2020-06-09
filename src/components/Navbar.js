@@ -16,6 +16,7 @@ function Navbar() {
             <Link to={"/videos"} style={{textDecoration: 'none', color: '#000',  fontFamily: 'Ubuntu'}}><span>Videos</span></Link>
             <Link to={"/publications"} style={{textDecoration: 'none', color: '#000',  fontFamily: 'Ubuntu'}}><span>Publications</span></Link>
             <Link to={"/donate"} style={{textDecoration: 'none', color: '#000', fontFamily: 'Ubuntu'}}><span>Donate</span></Link>
+            <Link to={"/upload"} style={{textDecoration: 'none', color: '#000', fontFamily: 'Ubuntu'}}><span>Upload</span></Link>
             <Link to={"/contact"} style={{textDecoration: 'none', color: '#000', fontFamily: 'Ubuntu'}}><span>Contact</span></Link>
         </div>
 

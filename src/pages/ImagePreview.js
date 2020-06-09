@@ -37,17 +37,7 @@ export default class ImagePreview extends React.Component{
                          letterSpacing: 'normal',
                          color: '#373a3c'
                     }}>Type</p>
-                    
-                    {/* separation line */}
-                    <div style={{
-                        position: 'absolute',
-                        left: '6.6%',
-                        top: '54px',                            
-                          width: '40px',
-                          height: '1px',
-                          backgroundColor:' #8d8d8d'
-                        
-                    }}></div>
+                  
 
                     {/* tags tag    */}
                     <p style={{
@@ -65,16 +55,7 @@ export default class ImagePreview extends React.Component{
                     
 
 
-                        {/* separation line */}
-                        <div style={{
-                        position: 'absolute',
-                        left: '13%',
-                        top: '54px',                            
-                          width: '40px',
-                          height: '1px',
-                          backgroundColor:' #8d8d8d'
-                        
-                    }}></div>
+                 
 
                     <p style={{
                         position:'absolute',
@@ -90,16 +71,7 @@ export default class ImagePreview extends React.Component{
                          color: '#373a3c' 
                     }}> Content</p>
 
-                    {/* separation line */}
-                    <div style={{
-                        position: 'absolute',
-                        left: '21.1%',
-                        top: '54px',                            
-                          width: '40px',
-                          height: '1.5px',
-                          backgroundColor:' #8d8d8d'
-                        
-                    }}></div>
+            
  
 <p style={{
                         position:'absolute',
@@ -116,16 +88,7 @@ export default class ImagePreview extends React.Component{
                     }}> Preview</p>
                     
                     
-                    {/* separation line */}
-                    <div style={{
-                        position: 'absolute',
-                        left: '29.1%',
-                        top: '54px',                            
-                          width: '40px',
-                          height: '1.5px',
-                          backgroundColor:' #8d8d8d'
-                        
-                    }}></div>
+            
 
 <p style={{
                         position:'absolute',
@@ -150,15 +113,7 @@ export default class ImagePreview extends React.Component{
                     }}/>
 
                   </Link> 
-                    {/* separator line vertical */}
-                    <div style={{
-                        width: '1px',
-                        height: '40px',
-                        backgroundColor:'black',
-                        position: 'absolute',
-                        left: '77%',
-                        top: '35px'
-                    }}></div>
+               
 
                     {/* back button burnt */}
                     <Link to={"/add-image-content"}>
@@ -192,7 +147,7 @@ export default class ImagePreview extends React.Component{
                     {/* page title here */}
                     <p style={{
                         position: 'absolute',
-                        top: '20.25%',
+                        top: '24.25%',
                         left: '13%',
                          fontFamily: 'Ubuntu',
                          fontSize: '30px',
@@ -207,7 +162,7 @@ export default class ImagePreview extends React.Component{
                     {/* paragraph section */}
                     <p style={{
                         position: 'absolute',
-                        top: '30.5%',
+                        top: '31.5%',
                         left: '13%',
                          width: '73.2%',
                          height: '96px',
@@ -225,7 +180,7 @@ export default class ImagePreview extends React.Component{
                         <section id="images-container">
                         <div style={{
                             position: 'absolute',
-                            top: '50%',
+                            top: '30%',
                             left:'13%',
                               width: '73.2%',
                               height: '550px',
@@ -236,7 +191,7 @@ export default class ImagePreview extends React.Component{
 
 <div style={{
                             position: 'absolute',
-                            top: '125%',
+                            top: '65%',
                             left:'13%',
                               width: '73.2%',
                               height: '550px',
@@ -246,46 +201,8 @@ export default class ImagePreview extends React.Component{
                         </section>
 
                         {/* comment section */}
-                        <div style={{
-                            position: 'absolute',
-                            top: '205%',
-                            left: '13%',
-                              width: '73.2%',
-                              height: '459px',
-                              boxShadow: '0 0 5px 0 rgba(0, 0, 0, 0.25)',
-                              backgroundColor: '#ffffff'
-                        }}>
-
-                        {/* comment box */}
-                        <input style={{
-                            position: 'absolute',
-                            top: '10.9%',
-                            left: '7.5%',
-                            width: '85%',
-                            height: '175px',
-                            border: 'solid 1px #373a3c'
-                        }}/>
-
-
-                       <button style={{
-                           position:'absolute',
-                           left: '83.5%',
-                           top: '53.4%',
-                           border: 'none',
-                           width: '100px',
-                           height: '40px',
-                           backgroundColor: '#ff8d80',
-                           fontFamily: 'Ubuntu',
-                           fontSize: '14px',
-                           fontWeight: 500,
-                           fontStyle: 'normal',
-                           fontStretch: 'normal',
-                           lineHeight: 'normal',
-                           letterSpacing: '-0.14px',
-                           color: '#ffffff'
-                       }}>POST</button>     
-                        </div>
-            </div>
+                        <br /><br /><br />
+                                  </div>
         )
     }
 }

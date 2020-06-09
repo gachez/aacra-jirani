@@ -16,8 +16,8 @@ function NavbarUpload() {
         <span>Upload</span></div>
 
         <img className="cancel" src={cancel} alt="cancel" />
-        <img className="" src={next} alt="next" />
-
+        <Link ><img className="" src={next} alt="next" />
+</Link>
         <img className="back" src={orangeback} alt="back"/>
   
     </nav>
