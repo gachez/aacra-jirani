@@ -51,15 +51,14 @@ class VideosContent extends React.Component{
                     <br />
                     <br />
                     <br />
-                    <div className="images-container">
             
                    <iframe 
-                     width="420" 
-                     height="315"
+                     width="70%" 
+                     height="550"
                      src={this.state.videos['acf'].url}
-                     title="linus torvalds" 
+                     title="" 
                      className="videos-frame" ></iframe>
-                    </div>
+                    
                     <br />
                     <br />
                     <br />

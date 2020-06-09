@@ -8,4 +8,251 @@
 
 .navbar span{
     margin-left: 50px;
+    font-family: Ubuntu;
+} 
+
+.cancel{
+    position: absolute;
+    right: 340px;
+}
+
+.back{
+    position: absolute;
+    left: 82.5%;
+}
+
+.next{
+    position: absolute;
+    left: 90.5%;
+}
+
+.title{
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 34px;
+    text-align: center;
+
+    /* grey 1 */
+    color: #373A3C;
+    position: absolute;
+    left: 3.125rem;
+    top: 170px;
+}
+
+.content-types{
+
+    text-align: center;
+    position: relative;
+    top: 285px;
+    left: 358px;
+    display: flex;
+    display: -ms-flexbox;
+    flex-direction: row;
+    align-self: center;
+    }
+
+.content-types div{
+    width: 150px;
+    margin-left: 100px;
+    height: 150px;
+    border: solid 1px black;
+    cursor: pointer;
+    display: flex;
+    display: -ms-grid;
+    justify-content: center;
+    align-items: center;
+}
+
+#placeholder-img{
+    margin: auto;
+}
+
+#placeholder-video{
+    margin: auto;
+}
+
+#placeholder-publications{
+    margin: auto;
+}
+
+.content-types div:hover{
+    background-color: #FF321A;
+    border: solid 1px #FF321A;
+}
+
+#images{
+    display: block;
+    position: relative;
+    text-align: center;
+
+}
+
+#images img{
+    margin-top: 30%;
+}
+
+#images::after{
+    content: 'Images';
+    display: block;
+    position: absolute;
+    top: 100%;
+    margin: 1rem;
+    text-align: center;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+
+/* identical to box height */
+text-align: center;
+
+/* grey 1 */
+color: #373A3C;
+}
+
+#videos{
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+#videos img{
+    margin-top: 30%;
+}
+
+#videos::after{
+    content: 'Videos';
+    display: block;
+    position: absolute;
+    top: 100%;
+    text-align: center;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    margin: 1rem;
+    /* identical to box height */
+    text-align: center;
+
+    /* grey 1 */
+    color: #373A3C;
+
+}
+
+#publications{
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+#publications img{
+    margin-top: 30%;
+}
+
+#publications::after{
+    content: 'Publications';
+    display: block;
+    position: absolute;
+    top: 100%;
+    text-align: center;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    margin: 1rem;
+    /* identical to box height */
+    text-align: center;
+
+    /* grey 1 */
+    color: #373A3C;
+}
+
+.content-types-category{
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+
+    /* identical to box height */
+
+    /* grey 1 */
+    color: #373A3C;
+    position: absolute;
+    top: 250px;
+    left: 50px;
+}
+
+.content-types-year{
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+
+    /* identical to box height */
+
+    /* grey 1 */
+    color: #373A3C;
+    position: absolute;
+    top: 250px;
+    left: 520px;
+}
+
+.tags-container{
+    position: absolute;
+    left: 3.125rem;
+    top: 18.75rem;
+    display: flex;
+    display: -ms-flexbox;
+    flex-wrap: wrap;
+
+    max-width: 400px;
+}
+
+.tags{
+    width: fit-content;
+    height: 35px;
+    padding: 10px 10px;
+    border: solid 1px black;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    margin: 10px;
+    /* grey 1 */
+    color: #373A3C;
+    cursor: pointer;
+}
+
+.tags:hover{
+    background-color: #FF321A;
+    color: white;
+    border-color: #FF321A;
+}
+
+.year-created-box{
+    width: 200px;
+    height: 45px;
+    border: solid 1px black;
+    padding: 1rem 1rem;
+    position: absolute;
+    top: 18.75rem;
+    left: 512px;
+    /* body 2 */
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* grey 1 */
+    color: #373A3C;
+    cursor: pointer;
 }

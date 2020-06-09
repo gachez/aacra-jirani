@@ -12,6 +12,8 @@ import next from './img/component.png';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import axios from 'axios';
+import {Link } from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner'
 
 const images = [
     'dkopweokp',
@@ -132,7 +134,7 @@ class Home extends React.Component{
                                     {
                                           this.state.images.map( img => {
                                             return(
-                                              <div style={{display: 'grid', margin:'30px'}} onClick={
+                                              <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
                                                 () =>{
                                                     window.location.href="/images-content"
                                                     localStorage.setItem('id', img.id)
@@ -208,10 +210,13 @@ class Home extends React.Component{
                     <br /><br /><br /><br />
                     <br /><br /><br />
                     
-                    <div className="navigation-down">
-                      <span>Contemporary African Art: VIDEOS</span>
-                      <img src={next} alt="next down navigation" />
-                    </div>
+                    <Link to={"/videos"}>
+                        <div className="navigation-down">
+                        <span>Contemporary African Art: VIDEOS</span>
+                        <img src={next} alt="next down navigation" />
+                        </div>
+                    </Link>
+                    
         
                     <br />
                     <br />
@@ -222,7 +227,13 @@ class Home extends React.Component{
                 </div>
             )
         }
-       return null;
+       return (
+       <div style={{display: 'flex', height: '100vh'}}>
+
+        <Spinner animation="border" role="status" style={{margin: 'auto'}}>
+            <span className="sr-only">Loading...</span>
+            </Spinner>
+       </div>);
     }
   
 }

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Ubuntu;
+  src: url(./fonts/Ubuntu/Ubuntu-Regular.ttf);
+}
+
 body{
   margin: 0;
   padding: 0;

@@ -2,12 +2,15 @@ import React from 'react';
 import {Container, Col, Row} from 'react-bootstrap';
 import searchIcon from '../img/icons_search.png';
 import navigation from '../img/nav_publications.png';
-import thumbnail from '../img/afrique.jpg';
+import {Link} from 'react-router-dom';
 import reset from '../img/reset.png';
 import next from '../img/component.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import axios from 'axios';
+
+import Spinner from 'react-bootstrap/Spinner'
+
 
 const images = [
     'dkopweokp',
@@ -90,7 +93,7 @@ class Publications extends React.Component {
                                     {
                                           this.state.publications.map( img => {
                                             return(
-                                              <div style={{display: 'grid', margin:'30px'}} onClick={
+                                              <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
                                                 () =>{
                                                     window.location.href="/publication-content"
                                                     localStorage.setItem('id', img.id)
@@ -178,11 +181,13 @@ class Publications extends React.Component {
                     </Container>
                     <br /><br /><br /><br />
                     <br /><br /><br />
-                    
+                    <Link to={"/"}>
                     <div className="navigation-down">
                       <span>Contemporary African Art: IMAGES</span>
                       <img src={next} alt="next down navigation" />
                     </div>
+                    
+                    </Link>
         
                     <br />
                     <br />
@@ -193,7 +198,13 @@ class Publications extends React.Component {
                 </div>
             )
         }
-       return null;
+       return (
+       <div style={{display: 'flex', height: '100vh'}}>
+
+            <Spinner animation="border" role="status" style={{margin: 'auto'}}>
+                <span className="sr-only">Loading...</span>
+                </Spinner>
+       </div>);
     }
    
 }

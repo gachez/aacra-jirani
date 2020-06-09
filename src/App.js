@@ -8,6 +8,9 @@ import ImagesContent from './pages/ImagesContent';
 import VideosContent from './pages/VideosContent';
 import PublicationContent from './pages/PublicationContent';
 import ChooseContent from './pages/ChooseContent';
+import ChooseTags from './pages/ChooseTags';
+import ImageUploadContent from './pages/ImageUploadContent';
+import AddImageContent from './pages/AddImageContent';
 
 
 const App = () =>{
@@ -21,6 +24,9 @@ const App = () =>{
                     <Route exact path={"/videos-content"} component={VideosContent}></Route>
                     <Route exact path={"/publication-content"} component={PublicationContent}></Route>
                     <Route exact path={"/choose-content"} component={ChooseContent}></Route>
+                    <Route exact path={"/choose-tags"} component={ChooseTags}></Route>
+                    <Route exact path={"/image-upload-content"} component={ImageUploadContent}></Route>
+                    <Route exact path={"/add-image-content"} component={AddImageContent}></Route>
 
                 </Switch>
             </BrowserRouter>
