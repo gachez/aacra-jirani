@@ -12,15 +12,28 @@ import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner'
 
 
-const images = [
-    'dkopweokp',
-    'dkopweokp',
-    'dkopweokp',
-    'dkopweokp',
-    'dkopweokp',
-    'dkopweokp',
-    'dkopweokp'
+
+const categories = [
+    'African games',
+    'Animation',
+    'Architecture', 
+    'Dance',
+    'Decorative arts',
+    'installations',
+    'painting',
+    'pottery'
 ];
+
+const years = [
+    2020,
+    2019,
+    2018,
+    2017,
+    2016,
+    2015,
+    2014
+];
+
 
 class Publications extends React.Component {
     state = {
@@ -34,7 +47,10 @@ class Publications extends React.Component {
         textBox: '',
         selectedCategory: 'Select category',
         selectedYear: 'Select a year',
-        defaultPublications: []
+        defaultPublications: [],
+        searchText: '',
+        subtitle: 'none',
+        subtitle2: 'none'
     }
 
     componentDidMount(){
@@ -42,7 +58,8 @@ class Publications extends React.Component {
         .then(res =>{
             this.setState({
                 publications: res.data,
-                isLoaded: true
+                isLoaded: true,
+                defaultPublications: res.data
             })
         })
         .catch(err => console.log(err))
@@ -52,15 +69,25 @@ class Publications extends React.Component {
            window.localStorage.clear()
        }
 
+
+        //get search text 
+        getSearch = (e) =>{
+            this.setState({
+                searchText: e.target.value,
+                subtitle: 'block'
+            })
+          
+         }
+
     //    function that toggles dropdowns in filter section
        toggleDropdown = (val) =>{
         switch(val){
             case 'category':
-                 this.state.filterCategory === 'none' ? this.setState({filterCategory: 'block'}) : this.setState({filterCategory: 'none'})
+                 this.state.filterCategory === 'none' ? this.setState({filterCategory: 'grid'}) : this.setState({filterCategory: 'none'})
                  break;
 
              case 'year': 
-                 this.state.filterYear === 'none' ? this.setState({filterYear: 'block'}) : this.setState({filterYear: 'none'})
+                 this.state.filterYear === 'none' ? this.setState({filterYear: 'grid'}) : this.setState({filterYear: 'none'})
                  break;    
 
              default: 
@@ -78,6 +105,7 @@ class Publications extends React.Component {
 
     render(){
         if(this.state.isLoaded){
+            console.log(this.state.publications)
             return (
                 <div>
                 <Navbar />
@@ -89,29 +117,55 @@ class Publications extends React.Component {
                             </Col>
                             <Col xs={8} id="second-column" >
                                 <span  id="image-title">Contemporary African Art: PUBLICATIONS</span> 
+                                <p className="sub-title" style={{display: this.state.subtitle}}>Showing results for "<strong style={{fontSize: '16px', color: 'red'}}>{this.state.searchText}</strong>" </p>
+                                <p className="sub-title" style={{display: this.state.subtitle2}}>Showing results for "<strong style={{fontSize: '16px', color: 'red'}}>{this.state.selectedCategory}</strong>" for year "<strong>{this.state.selectedYear === "Select a year" ? "" : this.state.selectedYear}</strong>"</p>     
                                 <section id="images-grid">
-                                    {
-                                          this.state.publications.map( img => {
-                                            return(
-                                              <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
-                                                () =>{
-                                                    window.location.href="/publication-content"
-                                                    localStorage.setItem('id', img.id)
+                                {
+                                                    this.state.searchText.length < 1 ?
+                                                    this.state.publications.map( img => {
+                                                    return(
+                                                        <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
+                                                        () =>{
+                                                            window.location.href="/images-content"
+                                                            localStorage.setItem('id', img.id)
+                                                        }
+                                                    }>
+                                                        <img  src={img._embedded['wp:featuredmedia']['0'].source_url} style={{
+                                                            height: '200px',
+                                                            width: '350px'                                                  
+                                                        }}  alt="images thumbnail"/>
+                                                        <span style={{padding: '10px', fontSize: '12px'}} dangerouslySetInnerHTML={{__html: img.title.rendered}}></span>    
+                                                        </div>  
+                                                    )
+                                                }) :
+                                                
+                                                this.state.publications.filter( thumb => {
+                                                    return(
+                                                    thumb.title.rendered.toLowerCase().indexOf(this.state.searchText.toLowerCase()) >= 0
+                                                )}).map( img => {
+                                                    return(
+                                                        <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
+                                                            () =>{
+                                                                window.location.href="/images-content"
+                                                                localStorage.setItem('id', img.id)
+                                                            }
+                                                        }>
+                                                        <img  src={img._embedded['wp:featuredmedia']['0'].source_url} style={{
+                                                            height: '200px',
+                                                            width: '350px !important'
+                                                        }} alt="images thumbnail"/>
+                                                        <span style={{padding: '10px', fontSize: '12px'}} dangerouslySetInnerHTML={{__html: img.title.rendered}}></span>    
+                                                            </div>  
+                                                        )
+                                                })
                                                 }
-                                              }>
-                                              <img  src={img._embedded['wp:featuredmedia']['0'].source_url} width="300px" height="192px" alt="images thumbnail"/>
-                                              <span style={{padding: '10px', fontSize: '12px'}} dangerouslySetInnerHTML={{__html: img.title.rendered}} ></span>    
-                                                </div>  
-                                            )
-                                        })         
-                                    }
                                                      
                                 </section>
                             </Col>
                             <Col id="third-column">
         
                               <div id="search-input">
-                                  <input style={{position: 'absolute', right: '50px', borderBottom: 'solid 1px black',width: '200px'}} placeholder="Search title, artist" type="textbox"/>
+                                  <input style={{position: 'absolute', right: '50px', borderBottom: 'solid 1px black',width: '200px'}} placeholder="Search title, artist" type="textbox" onChange={this.getSearch}/>
                                   <img id="searchIcon" src={searchIcon} width="18px" height="18px" />
                               </div>
         
@@ -121,60 +175,95 @@ class Publications extends React.Component {
                                  position: 'absolute',
                                  top: '138px',
                                  right: '50px'
-                            }}>
-                               <span>Select a category</span>
+                            }}
+                            onClick={() => {
+                                this.toggleDropdown('category')
+                            }}
+                            >
+                               <span className="category-select" >{this.state.selectedCategory}</span>
                                <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 9L12 15L18 9" stroke="#FF321A" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 9L12 15L18 9" stroke="#FF321A" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
                             <div className="dropdown-box" style={{
-                                top: '183px'
+                                top: '183px',
+                                display: this.state.filterCategory
                             }}>
-                                <span>Decorative arts</span>
-                                <span>Decorative arts</span>
-                                <span>Decorative arts</span>
-                                <span>Decorative arts</span>
-                                <span>Decorative arts</span>
+                                 {
+                                categories.map((category, index) => {
+                                
+                                
+                                    return(  
+                                    <span className="category-span" key={index} onClick={
+                                        () => {
+                                            this.setState({
+                                                selectedCategory: document.getElementsByClassName('category-span')[index].textContent,
+                                                filterCategory: 'none',
+                                                subtitle2: 'block',
+                                                publications: this.state.publications.filter(image => image.acf['discipline'].toLowerCase().includes(document.getElementsByClassName('category-span')[index].textContent.toLowerCase()))
+                                            })
+
+                                            document.getElementsByClassName('category-select')[0].style.color="#FF321A"
+
+                                }} style={{width: '100%'}}>{category}</span>)
+                                })
+                                }
+
                             </div>
                             
                             <br />
-                            <div className="category-box" style={{
-                                 position: 'absolute',
-                                 top: '218px',
-                                 right: '50px'
-                              }}>
-                               <span>Select a format</span>
-                               <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 9L12 15L18 9" stroke="#FF321A" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <div className="dropdown-box" style={{
-                                top: '263px'
-                            }}>
-                                <span>PDF</span>
-                                <span>EPUB</span>
-                            </div>
                             <br />
                             <div className="category-box" style={{
                                  position: 'absolute',
-                                 top: '298px',
+                                 top: '238px',
                                  right: '50px'
-                            }}>
-                               <span>Select a year</span>
+                            }}
+                            onClick={() => {
+                                this.toggleDropdown('year')
+                            }}
+                            >
+                               <span className="year-select">{this.state.selectedYear}</span>
                                <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 9L12 15L18 9" stroke="#FF321A" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 9L12 15L18 9" stroke="#FF321A" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
                             <div className="dropdown-box" style={{
-                                top: '343px'
+                                top: '283px',
+                                display: this.state.filterYear
                             }}>
-                                <span>2020</span>
-                                <span>2019</span>
-                                <span>2018</span>
-                                <span>2017</span>
-                                <span>2016</span>
-                                <span>2015</span>                    </div>
-                            <img src={reset} alt="reset here" id="reset" />
+                                                  {
+                                years.map((year, index) => {
+                                
+                                
+                                    return(  
+                                    <span className="year-span" key={index} onClick={
+                                        () => {
+                                            this.setState({
+                                                selectedYear: document.getElementsByClassName('year-span')[index].textContent,
+                                                filterCategory: 'none',
+                                                subtitle2: 'block',
+                                                publications: this.state.publications.filter(image => image.acf['discipline'].toLowerCase().includes(document.getElementsByClassName('category-span')[index].textContent.toLowerCase()))
+                                            })
+
+                                            document.getElementsByClassName('year-select')[0].style.color="#FF321A"
+
+                                }} style={{width: '100%'}}>{year}</span>)
+                                })
+                                }
+                                              </div>
+                            <img src={reset} alt="reset here" id="reset"   onClick={() => {
+                                document.getElementsByClassName('sub-title')[1].style.display="none";
+
+                                document.getElementsByClassName('category-select')[0].style.color="#000";
+                                document.getElementsByClassName('year-select')[0].style.color="#000";
+
+                                this.setState({
+                                  publications: this.state.defaultPublications,
+                                  selectedCategory: 'Select a category',
+                                  selectedYear: "Select a year",
+                                  subtitle2: 'none'
+                                })
+                            }} />
         
                             </Col>
                         </Row>

@@ -48,7 +48,8 @@ class Videos extends React.Component {
         selectedYear: 'Select a year',
         defaultVideos: [],
         subtitle: 'none',
-        subtitle2: 'none'
+        subtitle2: 'none',
+        searchText: ''
     }
  
     componentDidMount(){
@@ -72,9 +73,9 @@ class Videos extends React.Component {
         //get search text 
         getSearch = (e) =>{
          this.setState({
-             searchText: e.target.value
+             searchText: e.target.value,
+             subtitle: 'block'
          })
-         console.log(this.state.searchText)
        
       }
       
@@ -128,28 +129,52 @@ class Videos extends React.Component {
                                      <p className="sub-title" style={{display: this.state.subtitle2}}>Showing results for "<strong style={{fontSize: '16px', color: 'red'}}>{this.state.selectedCategory}</strong>" for year "<strong>{this.state.selectedYear === "Select a year" ? "" : this.state.selectedYear}</strong>"</p>
                                         <br />
                                                 <section id="images-grid">
-                                                    {
-                                                        this.state.videos.map( img => {
-                                                            return(
-                                                            <div style={{display: 'grid', margin:'30px',cursor: 'pointer'}} onClick={
-                                                                () =>{
-                                                                    window.location.href="/videos-content"
-                                                                    localStorage.setItem('id', img.id)
-                                                                }
-                                                            }>
-                                                            <img  src={img._embedded['wp:featuredmedia']['0'].source_url} width="300px" height="150px" alt="images thumbnail"/>
-                                                            <span style={{padding: '10px', fontSize: '12px'}} dangerouslySetInnerHTML={{__html: img.title.rendered}}></span>    
-                                                                </div>  
-                                                            )
-                                                        })         
-                                                    }
-                                                                    
+                                                {
+                                                    this.state.searchText.length < 1 ?
+                                                    this.state.videos.map( img => {
+                                                    return(
+                                                        <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
+                                                        () =>{
+                                                            window.location.href="/images-content"
+                                                            localStorage.setItem('id', img.id)
+                                                        }
+                                                    }>
+                                                        <img  src={img._embedded['wp:featuredmedia']['0'].source_url} style={{
+                                                            height: '200px',
+                                                            width: '300px'                                                  
+                                                        }}  alt="images thumbnail"/>
+                                                        <span style={{padding: '10px', fontSize: '12px'}} dangerouslySetInnerHTML={{__html: img.title.rendered}}></span>    
+                                                        </div>  
+                                                    )
+                                                }) :
+                                                
+                                                this.state.videos.filter( thumb => {
+                                                    return(
+                                                    thumb.title.rendered.toLowerCase().indexOf(this.state.searchText.toLowerCase()) >= 0
+                                                )}).map( img => {
+                                                    return(
+                                                        <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
+                                                            () =>{
+                                                                window.location.href="/images-content"
+                                                                localStorage.setItem('id', img.id)
+                                                            }
+                                                        }>
+                                                        <img  src={img._embedded['wp:featuredmedia']['0'].source_url} style={{
+                                                            height: '200px',
+                                                            width: '300px !important'
+                                                        }} alt="images thumbnail"/>
+                                                        <span style={{padding: '10px', fontSize: '12px'}} dangerouslySetInnerHTML={{__html: img.title.rendered}}></span>    
+                                                            </div>  
+                                                        )
+                                                })
+                                                }
+                                                                                
                                                 </section>
                                             </Col>
                                             <Col id="third-column">
                         
                                             <div id="search-input">
-                                                <input style={{position: 'absolute', right: '50px', borderBottom: 'solid 1px black',width: '200px'}} placeholder="Search title, artist" type="textbox"/>
+                                                <input style={{position: 'absolute', right: '50px', borderBottom: 'solid 1px black',width: '200px'}} placeholder="Search title, artist" type="textbox" onChange={this.getSearch} />
                                                 <img id="searchIcon" src={searchIcon} width="18px" height="18px" />
                                             </div>
                         
@@ -276,26 +301,26 @@ class Videos extends React.Component {
                                                 style={{width: '100%'}}>{year}</span>)
                                                 })
                                                 }              </div>
-                                            <img src={reset} alt="reset here" id="reset" onClick={() => {
-                                document.getElementsByClassName('sub-title')[1].style.display="none";
+                                                <img src={reset} alt="reset here" id="reset" onClick={() => {
+                                    document.getElementsByClassName('sub-title')[1].style.display="none";
 
-                                document.getElementsByClassName('category-select')[0].style.color="#000";
-                                document.getElementsByClassName('discussion-select')[0].style.color="#000";
+                                    document.getElementsByClassName('category-select')[0].style.color="#000";
+                                    document.getElementsByClassName('discussion-select')[0].style.color="#000";
 
-                                document.getElementsByClassName('year-select')[0].style.color="#000";
+                                    document.getElementsByClassName('year-select')[0].style.color="#000";
 
-                                this.setState({
-                                  videos: this.state.defaultVideos,
-                                  selectedCategory: 'Select a category',
-                                  selectedDiscussion: 'Select a discussion',
-                                  selectedYear: "Select a year",
-                                  subtitle2: 'none'
-                                })
-                            }} />
+                                    this.setState({
+                                    videos: this.state.defaultVideos,
+                                    selectedCategory: 'Select a category',
+                                    selectedDiscussion: 'Select a discussion',
+                                    selectedYear: "Select a year",
+                                    subtitle2: 'none'
+                                    })
+                                }} />
                         
                                             </Col>
                                         </Row>
-                                    </Container>
+                                    </Container> 
                                     <br /><br /><br /><br />
                                     <br /><br /><br />
                                     <Link to={"/publications"}>
