@@ -36,7 +36,7 @@
 
 #collapsing-menu{
     position: absolute;
-    right: 12.5%;
+    right: 18.5%;
 }
 
 #jirani{
@@ -46,6 +46,11 @@
 
 #collapsing-menu span{
     margin-left: 30px ;
+
+}
+
+#collapsing-menu span:hover{
+    color: #FF321A;
 }
 
 #open-menu-icon{
@@ -112,18 +117,18 @@ color: #373A3C;
     right: 138px;
     top: 4.25rem;
     font-family: Ubuntu;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 21px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
 
-/* identical to box height */
-display: flex;
-align-items: center;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
 
-/* burnt orange */
-color: #FF321A;
-}
+    /* burnt orange */
+    color: #FF321A;
+    }
 
 .category-box{
     display: -ms-flexbox;

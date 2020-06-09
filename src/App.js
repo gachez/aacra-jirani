@@ -22,6 +22,7 @@ import PublicationPreview from './pages/PublicationPreview';
 import PublicationContentUplaod from './pages/PublicationContentUpload';
 import Donate from './pages/Donate';
 import Contact from './pages/Contact';
+import UploadPin from './pages/UploadPin';
 
 
 const App = () =>{
@@ -49,6 +50,7 @@ const App = () =>{
                     <Route exact path={"/publication-upload-content"} component={PublicationContentUplaod}></Route>
                     <Route exact path={"/donate"} component={Donate}></Route>
                     <Route exact path={"/contact"} component={Contact}></Route>
+                    <Route exact path={"/upload"} component={UploadPin}></Route>
 
                 </Switch>
             </BrowserRouter>
