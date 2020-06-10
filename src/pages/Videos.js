@@ -135,7 +135,7 @@ class Videos extends React.Component {
                                                     return(
                                                         <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
                                                         () =>{
-                                                            window.location.href="/images-content"
+                                                            window.location.href="/videos-content"
                                                             localStorage.setItem('id', img.id)
                                                         }
                                                     }>
@@ -155,7 +155,7 @@ class Videos extends React.Component {
                                                     return(
                                                         <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
                                                             () =>{
-                                                                window.location.href="/images-content"
+                                                                window.location.href="/videos-content"
                                                                 localStorage.setItem('id', img.id)
                                                             }
                                                         }>

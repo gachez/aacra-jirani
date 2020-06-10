@@ -6,11 +6,10 @@ import '../styles/ImagesContent.css';
 import post from '../img/post.png';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner'
 
 const images = [
-    'sd',
-    'ds',
-    'sd'
+  
 ];
 
 class VideosContent extends React.Component{
@@ -92,7 +91,13 @@ class VideosContent extends React.Component{
                 </div>
             )
         }
-      return null;
+        return (
+            <div style={{display: 'flex', height: '100vh'}}>
+     
+             <Spinner animation="border" role="status" style={{margin: 'auto'}}>
+                 <span className="sr-only">Loading...</span>
+                 </Spinner>
+            </div>);
     }
 }
 

@@ -7,11 +7,9 @@ import image from '../img/content_img.png';
 import post from '../img/post.png';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner'
 
 const images = [
-    'sd',
-    'ds',
-    'sd'
 ];
 
 class ImagesContent extends React.Component{
@@ -55,7 +53,7 @@ class ImagesContent extends React.Component{
                     <Navbar />
                     <br />
                     <br />
-                    <Link className="back" to={"/"}><img src={back} alt="back" /></Link>
+                    <Link className="back" style={{left: '50px'}} to={"/"}><img src={back} alt="back" /></Link>
                     <span className="content-title" dangerouslySetInnerHTML={{ __html: this.state.images.title.rendered}}></span>
                     <br />
                     <br />
@@ -156,7 +154,13 @@ class ImagesContent extends React.Component{
                 </div>
             )
         }
-        return null;
+        return (
+            <div style={{display: 'flex', height: '100vh'}}>
+     
+             <Spinner animation="border" role="status" style={{margin: 'auto'}}>
+                 <span className="sr-only">Loading...</span>
+                 </Spinner>
+            </div>);
     }
 }
 

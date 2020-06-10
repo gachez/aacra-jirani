@@ -7,10 +7,10 @@ import post from '../img/post.png';
 import {Link} from 'react-router-dom';
 import PDFViewer from 'pdf-viewer-reactjs'
 import  axios from 'axios';
+import Spinner from 'react-bootstrap/Spinner';
+
 
 const images = [
-    'sd',
-    'ds'
 ];
 
 class PublicationContent extends React.Component{
@@ -32,11 +32,14 @@ class PublicationContent extends React.Component{
         .catch(err => console.log(err))
 
     }
-   
+
+      
 
     render() {
         if(this.state.isLoaded){
             console.log(this.state.publication)
+
+            const { numPages, pageNumber } = this.state;
             return(
                 <div className="page-content">
                     <Navbar />
@@ -59,19 +62,10 @@ class PublicationContent extends React.Component{
                     <br />
                     <div className="images-container">
             
-                    <PDFViewer  className="videos-frame"
-                    navbarOnTop={true}
-                    scale={1}
-                document={{
-                    url: 'https://orientationtrip2011.files.wordpress.com/2010/08/text-contemporary-african-art-since-1980-by-okwui-enwezor-chika-okeke-agulu.pdf',
-                }}
-            />
-                   {/* <iframe 
-                     width="420" 
-                     height="315"
-                     src=""
+                   <iframe 
                      title="document viewer" 
-                     className="videos-frame" ></iframe> */}
+                     className="videos-frame" src="https://arthistory.rutgers.edu/images/Documents/Spring2017_syllabi/240-Brett-Smith.pdf" 
+                     width="80%" height="650px" ></iframe>
                     </div>
                     <br />
                     <br />
@@ -106,7 +100,13 @@ class PublicationContent extends React.Component{
                 </div>
             )
         }
-     return null;
+        return (
+            <div style={{display: 'flex', height: '100vh'}}>
+     
+             <Spinner animation="border" role="status" style={{margin: 'auto'}}>
+                 <span className="sr-only">Loading...</span>
+                 </Spinner>
+            </div>);
     }
 }
 

@@ -126,7 +126,7 @@ class Publications extends React.Component {
                                                     return(
                                                         <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
                                                         () =>{
-                                                            window.location.href="/images-content"
+                                                            window.location.href="/publication-content"
                                                             localStorage.setItem('id', img.id)
                                                         }
                                                     }>
@@ -146,7 +146,7 @@ class Publications extends React.Component {
                                                     return(
                                                         <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
                                                             () =>{
-                                                                window.location.href="/images-content"
+                                                                window.location.href="/publication-content"
                                                                 localStorage.setItem('id', img.id)
                                                             }
                                                         }>
