@@ -63,8 +63,7 @@ class PublicationContent extends React.Component{
                     <div className="images-container">
             
                    <iframe 
-                     title="document viewer" 
-                     className="videos-frame" src="https://arthistory.rutgers.edu/images/Documents/Spring2017_syllabi/240-Brett-Smith.pdf" 
+                     title="document viewer" src="https://arthistory.rutgers.edu/images/Documents/Spring2017_syllabi/240-Brett-Smith.pdf" 
                      width="80%" height="650px" ></iframe>
                     </div>
                     <br />
