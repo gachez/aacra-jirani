@@ -45,7 +45,7 @@ class PublicationContent extends React.Component{
                     <Navbar />
                     <br />
                     <br />
-                    <Link to={"/publications"} className="back" ><img src={back} alt="back" /></Link>
+                    <Link to={"/publications"} className="back" style={{left: '50px'}} ><img src={back} alt="back" /></Link>
                     <span className="content-title" dangerouslySetInnerHTML={{ __html: this.state.publication.title.rendered}}></span>
                     <br />
                     <br />
