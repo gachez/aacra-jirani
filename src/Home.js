@@ -58,7 +58,7 @@ class Home extends React.Component{
      }
  
      componentDidMount(){
-         axios.get(`https://tengezastudios.co.ke/wp-ckr/wp-json/wp/v2/images?_embed`)
+         axios.get(`https://tengezastudios.co.ke/aacra/wp-json/wp/v2/images?_embed`)
          .then(res =>{
              this.setState({
                  images: res.data,

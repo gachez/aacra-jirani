@@ -22,7 +22,7 @@ class PublicationContent extends React.Component{
     }
 
     componentDidMount(){
-        axios.get(`https://tengezastudios.co.ke/wp-ckr/wp-json/wp/v2/publications/${parseInt(localStorage.id)}`)
+        axios.get(`https://tengezastudios.co.ke/aacra/wp-json/wp/v2/publications/${parseInt(localStorage.id)}`)
         .then(res =>{
             this.setState({
                 publication: res.data,
@@ -52,18 +52,20 @@ class PublicationContent extends React.Component{
                     <p className="content-body" dangerouslySetInnerHTML={{ __html: this.state.publication.excerpt.rendered}}>
                     </p>
                     <br />
-                    <small className="description-footer" dangerouslySetInnerHTML={{__html: this.state.publication.acf.author }} style={{fontSize: '11px'}}></small>
+                    <b className="description-footer" dangerouslySetInnerHTML={{__html: this.state.publication.acf.author }} style={{fontSize: '11px'}}></b>
+                    <b className="description-footer-2" dangerouslySetInnerHTML={{__html: this.state.publication.acf.publisher }} style={{fontSize: '11px'}}></b>
+                    <b className="description-footer-3" dangerouslySetInnerHTML={{__html: this.state.publication.acf.volume }} style={{fontSize: '11px'}}></b>
                     <br />
                     <br />
                     <br />
-                    <br />
+                    <br /> 
                     <br />
                     <br />
                     <br />
                     <div className="images-container">
             
                    <iframe 
-                     title="document viewer" src="https://arthistory.rutgers.edu/images/Documents/Spring2017_syllabi/240-Brett-Smith.pdf" 
+                     title="document viewer" src={this.state.publication.acf.src} 
                      width="80%" height="650px" ></iframe>
                     </div>
                     <br />

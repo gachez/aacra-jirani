@@ -6,7 +6,7 @@ import '../styles/ImagesContent.css';
 import post from '../img/post.png';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from 'react-bootstrap/Spinner';
 
 const images = [
   
@@ -19,7 +19,7 @@ class VideosContent extends React.Component{
     }
 
     componentDidMount(){
-        axios.get(`https://tengezastudios.co.ke/wp-ckr/wp-json/wp/v2/videos/${parseInt(localStorage.id)}`)
+        axios.get(`https://tengezastudios.co.ke/aacra/wp-json/wp/v2/videos/${parseInt(localStorage.id)}`)
         .then(res =>{
             this.setState({
                 videos: res.data,

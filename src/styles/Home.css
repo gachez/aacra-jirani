@@ -244,6 +244,19 @@ color: #373A3C;
     top: 295px;
     left: 11.45rem;
 }
+.description-footer-2{
+    position: absolute;
+    top: 295px;
+    left: 15.23rem;
+}
+
+.description-footer-3{
+    position: absolute;
+    top: 295px;
+    left: 22.25rem;
+}
+
+
 
 .footer{
     width: 100%;

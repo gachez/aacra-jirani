@@ -53,7 +53,7 @@ class Videos extends React.Component {
     }
  
     componentDidMount(){
-     axios.get(`https://tengezastudios.co.ke/wp-ckr/wp-json/wp/v2/videos?_embed`)
+     axios.get(`https://tengezastudios.co.ke/aacra/wp-json/wp/v2/videos?_embed`)
      .then(res =>{
          this.setState({
              videos: res.data,

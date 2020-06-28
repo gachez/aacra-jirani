@@ -54,7 +54,7 @@ class Publications extends React.Component {
     }
 
     componentDidMount(){
-        axios.get(`https://tengezastudios.co.ke/wp-ckr/wp-json/wp/v2/publications?_embed`)
+        axios.get(`https://tengezastudios.co.ke/aacra/wp-json/wp/v2/publications?_embed`)
         .then(res =>{
             this.setState({
                 publications: res.data,
