@@ -16,14 +16,40 @@ import {Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner'
 
 const categories = [
-    'African games',
+    'Art',
+    'Design'
+];
+
+const ART = [
+    'African Games',
     'Animation',
-    'Architecture', 
+    'Music',
     'Dance',
-    'Decorative arts',
-    'installations',
-    'painting',
-    'pottery'
+    'Theatre',
+    'Installation Art',
+    'African Architecture',
+    'Decorative Arts',
+    'Sculpture',
+    'Painting',
+    'Drawing',
+    'Visual Storytelling',
+    'Printmaking'
+];
+
+const DESIGN = [
+    'African Typography',
+    'Cultural Branding',
+    'Digital Illustration',
+    'Online Advertising',
+    'Marketing',
+    'Product Design',
+    'Fashion',
+    'Furnishing',
+    'Industrial Design',
+    'Textiles',
+    'Fabrics',
+    'Interior',
+    'Landscape Design'
 ];
 
 const years = [

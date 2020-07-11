@@ -20,6 +20,43 @@ const categories = [
     'painting',
     'pottery'
 ];
+const ART = [
+    'African Games',
+    'Animation',
+    'Music',
+    'Dance',
+    'Theatre',
+    'Installation Art',
+    'African Architecture',
+    'Decorative Arts',
+    'Sculpture',
+    'Painting',
+    'Drawing',
+    'Visual Storytelling',
+    'Printmaking'
+];
+
+const DESIGN = [
+    'African Typography',
+    'Cultural Branding',
+    'Digital Illustration',
+    'Online Advertising',
+    'Marketing',
+    'Product Design',
+    'Fashion',
+    'Furnishing',
+    'Industrial Design',
+    'Textiles',
+    'Fabrics',
+    'Interior',
+    'Landscape Design'
+];
+
+const recordedLectures = [
+    'Webinar',
+    'Audio',
+    'Video'
+]
 
 const years = [
     2020,
