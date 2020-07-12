@@ -53,7 +53,7 @@ class ImagesContent extends React.Component{
                     <Navbar />
                     <br />
                     <br />
-                    <Link className="back" style={{left: '50px'}} to={"/"}><img src={back} alt="back" /></Link>
+                    <Link style={{position: 'absolute',left: '50px'}} to={"/"}><img src={back} alt="back" /></Link>
                     <span className="content-title" dangerouslySetInnerHTML={{ __html: this.state.images.title.rendered}}></span>
                     <br />
                     <br />
@@ -101,9 +101,7 @@ class ImagesContent extends React.Component{
                     <br />
                     <br />
                     <br />
-                    <br />
-                   
-                    <br />
+                    <br /> <br />
                     <br />
                     <br />
                     <br />
@@ -114,7 +112,15 @@ class ImagesContent extends React.Component{
                     <br />
                     <br />
                     <br />
-                   
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br /> 
                     <br />
                     <br />
                     <br />
