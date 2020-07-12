@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Col, Row} from 'react-bootstrap';
+import {Container, Col, Row,DropdownButton, DropdownItem, ButtonGroup} from 'react-bootstrap';
 import searchIcon from '../img/icons_search.png';
 import navigation from '../img/nav_videos.png';
 import reset from '../img/reset.png';
@@ -10,16 +10,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 
-const categories = [
-    'African games',
-    'Animation',
-    'Architecture', 
-    'Dance',
-    'Decorative arts',
-    'installations',
-    'painting',
-    'pottery'
-];
 const ART = [
     'African Games',
     'Animation',
@@ -52,6 +42,17 @@ const DESIGN = [
     'Landscape Design'
 ];
 
+const categories = [
+{
+    name: 'Art',
+    children: ART
+},
+{
+    name: 'Design',
+    children: DESIGN
+}
+];
+
 const recordedLectures = [
     'Webinar',
     'Audio',
@@ -81,7 +82,7 @@ class Videos extends React.Component {
         isLoaded: false,
         textBox: '',
         selectedCategory: 'Select category',
-        selectedDiscussion: 'Select discussion',
+        selectedDiscussion: 'Recorded lectures',
         selectedYear: 'Select a year',
         defaultVideos: [],
         subtitle: 'none',
@@ -241,20 +242,30 @@ class Videos extends React.Component {
                                           categories.map((category, index) => {
                                 
                                 
-                                    return(  <span className="category-span" key={index} onClick={
-                                        () => {
-                                            
-                                            this.setState({
-                                                selectedCategory: document.getElementsByClassName('category-span')[index].textContent,
-                                                filterCategory: 'none',
-                                                subtitle2: 'block',
-                                                videos: this.state.videos.filter(image => image.acf['discipline'].toLowerCase().includes(document.getElementsByClassName('category-span')[index].textContent.toLowerCase()))
-                                            })
-
-                                            document.getElementsByClassName('category-select')[0].style.color="#FF321A"
-
-                                            }} style={{width: '100%'}}>{category}</span>)
-                                            })
+                                            return(  
+                                                <DropdownButton
+                                                as={ButtonGroup}
+                                                key={index}
+                                                size="xs"
+                                                variant="dark"
+                                                style={{
+                                                    background: 'none', 
+                                                    height: '32px',
+                                                    marginTop:'5px',
+                                                    textAlign: 'left' 
+                                                }}
+                                                title={category.name}
+        
+                                              >
+                                               {
+                                                   category.children.map( category => {
+                                                       return(
+                                                           <DropdownItem className="category-span">{category}</DropdownItem>
+                                                       )
+                                                   })
+                                               }
+                                              </DropdownButton>
+                                          )})
 
                                             }
                                             </div>
@@ -279,23 +290,21 @@ class Videos extends React.Component {
                                                 display: this.state.filterDiscussion
                                             }}>
                                                          {
-                                          categories.map((category, index) => {
-                                
-                                
-                                            return(  <span className="discussion-span" key={index} onClick={
-                                                () => {
-                                                    
-                                                    this.setState({
-                                                        selectedDiscussion: document.getElementsByClassName('discussion-span')[index].textContent,
-                                                        filterCategory: 'none',
-                                                        subtitle2: 'block',
-                                                        videos: this.state.videos.filter(image => image.acf['discussion'].toLowerCase().includes(document.getElementsByClassName('discussion-span')[index].textContent.toLowerCase()))
-                                                    })
+                                          recordedLectures.map((category, index) => {
+                                                return(  <span className="discussion-span" key={index} onClick={
+                                                    () => {
+                                                        
+                                                        this.setState({
+                                                            selectedDiscussion: document.getElementsByClassName('discussion-span')[index].textContent,
+                                                            filterCategory: 'none',
+                                                            subtitle2: 'block',
+                                                            videos: this.state.videos.filter(image => image.acf['discussion'].toLowerCase().includes(document.getElementsByClassName('discussion-span')[index].textContent.toLowerCase()))
+                                                        })
 
-                                                    document.getElementsByClassName('discussion-select')[0].style.color="#FF321A"
+                                                        document.getElementsByClassName('discussion-select')[0].style.color="#FF321A"
 
-                                                    }} style={{width: '100%'}}>{category}</span>)
-                                                    })
+                                                        }} style={{width: '100%'}}>{category}</span>)
+                                                        })
 
                                                     }
                                                     </div>

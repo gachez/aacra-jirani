@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/Home.css';
-import {Container, Col, Row} from 'react-bootstrap';
+import {Container, Col, Row, ButtonGroup, DropdownItem, DropdownButton} from 'react-bootstrap';
 import logo from './img/logo.png';
 import sublogo from './img/sublogo.png';
 import searchIcon from './img/icons_search.png';
@@ -15,10 +15,6 @@ import axios from 'axios';
 import {Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner'
 
-const categories = [
-    'Art',
-    'Design'
-];
 
 const ART = [
     'African Games',
@@ -50,6 +46,17 @@ const DESIGN = [
     'Fabrics',
     'Interior',
     'Landscape Design'
+];
+
+const categories = [
+{
+    name: 'Art',
+    children: ART
+},
+{
+    name: 'Design',
+    children: DESIGN
+}
 ];
 
 const years = [
@@ -158,7 +165,7 @@ class Home extends React.Component{
 
     render(){
         if(this.state.isLoaded){
-            console.log(this.state.images);
+            console.log(categories);
 
 
             return (
@@ -253,21 +260,30 @@ class Home extends React.Component{
                                 categories.map((category, index) => {
                                 
                                 
-                                    return(  <span className="category-span" key={index} onClick={
+                                    return(  
+                                        <DropdownButton
+                                        as={ButtonGroup}
+                                        key={index}
+                                        size="xs"
+                                        variant="dark"
+                                        style={{
+                                            background: 'none', 
+                                            height: '32px',
+                                            marginTop:'5px',
+                                            textAlign: 'left' 
+                                        }}
+                                        title={category.name}
 
-                                        
-                                        () => {
-                                            
-                                            this.setState({
-                                                selectedCategory: document.getElementsByClassName('category-span')[index].textContent,
-                                                filterCategory: 'none',
-                                                subtitle2: 'block',
-                                                images: this.state.images.filter(image => image.acf['category'].toLowerCase().includes(document.getElementsByClassName('category-span')[index].textContent.toLowerCase()))
-                                            })
-
-                                            document.getElementsByClassName('category-select')[0].style.color="#FF321A"
-
-                                }} style={{width: '100%'}}>{category}</span>)
+                                      >
+                                       {
+                                           category.children.map( category => {
+                                               return(
+                                                   <DropdownItem className="category-span">{category}</DropdownItem>
+                                               )
+                                           })
+                                       }
+                                      </DropdownButton>
+                                  )
                                 })
 
                                 }

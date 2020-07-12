@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Col, Row} from 'react-bootstrap';
+import {Container, Col, Row, DropdownButton, ButtonGroup, DropdownItem} from 'react-bootstrap';
 import searchIcon from '../img/icons_search.png';
 import navigation from '../img/nav_publications.png';
 import {Link} from 'react-router-dom';
@@ -8,20 +8,49 @@ import next from '../img/component.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import axios from 'axios';
-
 import Spinner from 'react-bootstrap/Spinner'
 
+const ART = [
+    'African Games',
+    'Animation',
+    'Music',
+    'Dance',
+    'Theatre',
+    'Installation Art',
+    'African Architecture',
+    'Decorative Arts',
+    'Sculpture',
+    'Painting',
+    'Drawing',
+    'Visual Storytelling',
+    'Printmaking'
+];
 
+const DESIGN = [
+    'African Typography',
+    'Cultural Branding',
+    'Digital Illustration',
+    'Online Advertising',
+    'Marketing',
+    'Product Design',
+    'Fashion',
+    'Furnishing',
+    'Industrial Design',
+    'Textiles',
+    'Fabrics',
+    'Interior',
+    'Landscape Design'
+];
 
 const categories = [
-    'African games',
-    'Animation',
-    'Architecture', 
-    'Dance',
-    'Decorative arts',
-    'installations',
-    'painting',
-    'pottery'
+{
+    name: 'Art',
+    children: ART
+},
+{
+    name: 'Design',
+    children: DESIGN
+}
 ];
 
 const years = [
@@ -193,20 +222,31 @@ class Publications extends React.Component {
                                 categories.map((category, index) => {
                                 
                                 
+                                   
                                     return(  
-                                    <span className="category-span" key={index} onClick={
-                                        () => {
-                                            this.setState({
-                                                selectedCategory: document.getElementsByClassName('category-span')[index].textContent,
-                                                filterCategory: 'none',
-                                                subtitle2: 'block',
-                                                publications: this.state.publications.filter(image => image.acf['discipline'].toLowerCase().includes(document.getElementsByClassName('category-span')[index].textContent.toLowerCase()))
-                                            })
+                                        <DropdownButton
+                                        as={ButtonGroup}
+                                        key={index}
+                                        size="xs"
+                                        variant="dark"
+                                        style={{
+                                            background: 'none', 
+                                            height: '32px',
+                                            marginTop:'5px',
+                                            textAlign: 'left' 
+                                        }}
+                                        title={category.name}
 
-                                            document.getElementsByClassName('category-select')[0].style.color="#FF321A"
-
-                                }} style={{width: '100%'}}>{category}</span>)
-                                })
+                                      >
+                                       {
+                                           category.children.map( category => {
+                                               return(
+                                                   <DropdownItem className="category-span">{category}</DropdownItem>
+                                               )
+                                           })
+                                       }
+                                      </DropdownButton>
+                                  )})
                                 }
 
                             </div>

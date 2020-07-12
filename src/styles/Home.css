@@ -147,7 +147,7 @@ color: #373A3C;
 .dropdown-box{
     background: #373A3C;
     width: 200px;
-    height: 236px;
+    height: auto;
     position: absolute;
     right: 3.125rem;
     display: grid;
