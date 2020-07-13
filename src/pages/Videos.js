@@ -116,7 +116,98 @@ class Videos extends React.Component {
          })
        
       }
+
+      returnImagesToDefault = () => {
+        this.setState({
+            videos: this.state.defaultVideos
+        })
+        return true;
+    }
+
+    resetFilters = () => {
+        this.setState({
+          videos: this.state.defaultVideos,
+          selectedCategory: 'Select a category',
+          selectedYear: "Select a year",
+          selectedDiscussion: 'Recorded lectures',
+          subtitle2: 'none'
+        })
+    
+ }
       
+        //handle filters
+        filterCategory =  async (category) => {
+            if(this.state.selectedCategory === 'Select category'){
+                this.setState({
+                    selectedCategory: category,
+                    videos: this.state.videos.filter(img => img.acf['discipline'].toLowerCase() === category.toLowerCase()),
+                    subtitle2: 'block',
+                    filterCategory: 'none'
+                });
+                return 0;
+            }
+            await this.returnImagesToDefault();
+            this.setState({
+                selectedCategory: category,
+                videos: this.state.videos.filter(img => img.acf['discipline'].toLowerCase() === category.toLowerCase()),
+                subtitle2: 'block',
+                filterCategory: 'none'
+            });
+            
+        }
+
+          //filter year
+          filterYear = async (year) => {
+            if(this.state.selectedYear === 'Select a year'){
+               if(this.state.selectedCategory === 'Select category'){
+                this.setState({
+                    selectedYear: year,
+                    videos: this.state.videos.filter(img => img.acf['year'] === year),
+                    subtitle2: 'block',
+                    filterYear: 'none'
+                });
+                return 0;
+               }
+               this.setState({
+                selectedYear: year,
+                videos: this.state.videos.filter(img => img.acf['year'] === year && img.acf['category'].toLowerCase() === this.state.selectedCategory.toLowerCase()),
+                subtitle2: 'block',
+                filterYear: 'none'
+            });
+            return 0;
+            }
+
+            await this.returnImagesToDefault();
+            this.setState({
+                selectedYear: year,
+                videos: this.state.videos.filter(img => img.acf['year'].toLowerCase() === year),
+                subtitle2: 'block',
+                filterYear: 'none'
+            });
+             }
+
+            //function to filter lectures
+            //handle filters
+            filterDiscussion =  async (discussion) => {
+                if(this.state.selectedDiscussion === 'Recorded lectures'){
+                    this.setState({
+                        selectedDiscussion: discussion,
+                        videos: this.state.videos.filter(img => img.acf['discussion'].toLowerCase() === discussion.toLowerCase()),
+                        subtitle2: 'block',
+                        filterDiscussion: 'none'
+                    });
+                    return 0;
+                }
+                await this.returnImagesToDefault();
+                this.setState({
+                    selectedDiscussion: discussion,
+                    videos: this.state.videos.filter(img => img.acf['discussion'].toLowerCase() === discussion.toLowerCase()),
+                    subtitle2: 'block',
+                    filterDiscussion: 'none'
+                });
+                
+            } 
+
           //    function that toggles dropdowns in filter section
           toggleDropdown = (val) =>{
              switch(val){
@@ -260,7 +351,9 @@ class Videos extends React.Component {
                                                {
                                                    category.children.map( category => {
                                                        return(
-                                                           <DropdownItem className="category-span">{category}</DropdownItem>
+                                                           <DropdownItem className="category-span" onClick = { () =>{
+                                                               this.filterCategory(category)
+                                                           }}>{category}</DropdownItem>
                                                        )
                                                    })
                                                }
@@ -290,20 +383,9 @@ class Videos extends React.Component {
                                                 display: this.state.filterDiscussion
                                             }}>
                                                          {
-                                          recordedLectures.map((category, index) => {
+                                          recordedLectures.map((discussion, index) => {
                                                 return(  <span className="discussion-span" key={index} onClick={
-                                                    () => {
-                                                        
-                                                        this.setState({
-                                                            selectedDiscussion: document.getElementsByClassName('discussion-span')[index].textContent,
-                                                            filterCategory: 'none',
-                                                            subtitle2: 'block',
-                                                            videos: this.state.videos.filter(image => image.acf['discussion'].toLowerCase().includes(document.getElementsByClassName('discussion-span')[index].textContent.toLowerCase()))
-                                                        })
-
-                                                        document.getElementsByClassName('discussion-select')[0].style.color="#FF321A"
-
-                                                        }} style={{width: '100%'}}>{category}</span>)
+                                                    () => {this.filterDiscussion(discussion)}} style={{width: '100%'}}>{discussion}</span>)
                                                         })
 
                                                     }
