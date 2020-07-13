@@ -106,7 +106,65 @@ class Home extends React.Component{
          window.localStorage.clear()
  
      }
+
+        returnImagesToDefault = () => {
+            this.setState({
+                images: this.state.defaultImages
+            })
+            return true;
+        }
  
+        //handle filters
+        filterCategory =  async (category) => {
+            if(this.state.selectedCategory === 'Select category'){
+                this.setState({
+                    selectedCategory: category,
+                    images: this.state.images.filter(img => img.acf['category'].toLowerCase() === category.toLowerCase()),
+                    subtitle2: 'block',
+                    filterCategory: 'none'
+                });
+                return 0;
+            }
+            await this.returnImagesToDefault();
+            this.setState({
+                selectedCategory: category,
+                images: this.state.images.filter(img => img.acf['category'].toLowerCase() === category.toLowerCase()),
+                subtitle2: 'block',
+                filterCategory: 'none'
+            });
+            
+        }
+
+        //filter year
+        filterYear = async (year) => {
+            if(this.state.selectedYear === 'Select a year'){
+               if(this.state.selectedCategory === 'Select category'){
+                this.setState({
+                    selectedYear: year,
+                    images: this.state.images.filter(img => img.acf['year'] === year),
+                    subtitle2: 'block',
+                    filterYear: 'none'
+                });
+                return 0;
+               }
+               this.setState({
+                selectedYear: year,
+                images: this.state.images.filter(img => img.acf['year'] === year && img.acf['category'].toLowerCase() === this.state.selectedCategory.toLowerCase()),
+                subtitle2: 'block',
+                filterYear: 'none'
+            });
+            return 0;
+            }
+
+            await this.returnImagesToDefault();
+            this.setState({
+                selectedYear: year,
+                images: this.state.images.filter(img => img.acf['year'].toLowerCase() === year),
+                subtitle2: 'block',
+                filterYear: 'none'
+            });
+             }
+
         //get search text 
         getSearch = (e) =>{
          this.setState({
@@ -158,14 +216,20 @@ class Home extends React.Component{
          // }
         
          resetFilters = () => {
-           window.location.reload()
+                this.setState({
+                  images: this.state.defaultImages,
+                  selectedCategory: 'Select a category',
+                  selectedYear: "Select a year",
+                  subtitle2: 'none'
+                })
+            
          }
 
         
 
     render(){
         if(this.state.isLoaded){
-            console.log(categories);
+            console.log(this.state.images);
 
 
             return (
@@ -188,6 +252,7 @@ class Home extends React.Component{
             <p className="sub-title" style={{display: this.state.subtitle}}>Showing results for "<strong style={{fontSize: '16px', color: 'red'}}>{this.state.searchText}</strong>" </p>
                                      <p className="sub-title" style={{display: this.state.subtitle2}}>Showing results for "<strong style={{fontSize: '16px', color: 'red'}}>{this.state.selectedCategory}</strong>" for year "<strong>{this.state.selectedYear === "Select a year" ? "" : this.state.selectedYear}</strong>"</p>
 
+                                {/* images thumbnail grid */}
                                 <section id="images-grid">
                                     {
                                         this.state.searchText.length < 1 ?
@@ -210,7 +275,7 @@ class Home extends React.Component{
                                       this.state.images.filter( thumb => {
                                           return(
                                           thumb.title.rendered.toLowerCase().indexOf(this.state.searchText.toLowerCase()) >= 0
-                                      )}).map( img => {
+                                        )}).map( img => {
                                           return(
                                               <div style={{display: 'grid', margin:'30px', cursor: 'pointer'}} onClick={
                                                 () =>{
@@ -278,7 +343,9 @@ class Home extends React.Component{
                                        {
                                            category.children.map( category => {
                                                return(
-                                                   <DropdownItem className="category-span">{category}</DropdownItem>
+                                                   <DropdownItem className="category-span" onClick={ () => {
+                                                       this.filterCategory(category)
+                                                    }}>{category}</DropdownItem>
                                                )
                                            })
                                        }
@@ -310,35 +377,14 @@ class Home extends React.Component{
                             {
 
                                 years.map((year, index) => {
-                                return(  <span key={index} className="year-span" onClick={() => {
-                                    this.setState({
-                                        selectedYear: document.getElementsByClassName('year-span')[index].textContent,
-                                        filterYear: 'none',
-                                        images: this.state.images.filter(image => image.acf['year'] === document.getElementsByClassName('year-span')[index].textContent)
-                                    })
-
-                                    document.getElementsByClassName('year-select')[0].style.color="#FF321A"
-                                }
-                            }
+                                return(  <span key={index} className="year-span" onClick={ () => {this.filterYear(year)}}
                              style={{width: '100%'}}>{year}</span>)
                                 })
                                 }
                             </div>
                             <br />
                             
-                            <img src={reset} alt="reset here" id="reset" onClick={() => {
-                                document.getElementsByClassName('sub-title')[1].style.display="none";
-
-                                document.getElementsByClassName('category-select')[0].style.color="#000";
-
-                                document.getElementsByClassName('year-select')[0].style.color="#000";
-
-                                this.setState({
-                                  images: this.state.defaultImages,
-                                  selectedCategory: 'Select a category',
-                                  selectedYear: "Select a year"
-                                })
-                            }} />
+                            <img src={reset} alt="reset here" id="reset" onClick={() => {this.resetFilters()}} />
         
                             </Col>
                         </Row>
