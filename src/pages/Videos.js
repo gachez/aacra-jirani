@@ -170,7 +170,7 @@ class Videos extends React.Component {
                }
                this.setState({
                 selectedYear: year,
-                videos: this.state.videos.filter(img => img.acf['year'] === year && img.acf['category'].toLowerCase() === this.state.selectedCategory.toLowerCase()),
+                videos: this.state.videos.filter(img => img.acf['year'] === year && img.acf['discipline'].toLowerCase() === this.state.selectedCategory.toLowerCase()),
                 subtitle2: 'block',
                 filterYear: 'none'
             });
@@ -416,14 +416,8 @@ class Videos extends React.Component {
 
                                                 years.map((year, index) => {
                                                 return(  <span key={index} className="year-span" onClick={() => {
-                                                    this.setState({
-                                                        selectedYear: document.getElementsByClassName('year-span')[index].textContent,
-                                                        filterYear: 'none',
-                                                        subtitle: 'block',
-                                                        videos: this.state.videos.filter(image => image.acf['year'] === document.getElementsByClassName('year-span')[index].textContent)
-                                                    })
-
-                                                    document.getElementsByClassName('year-select')[0].style.color="#FF321A"
+                                                   
+                                                   this.filterYear(year)
                                                 }
                                                 }
                                                 style={{width: '100%'}}>{year}</span>)

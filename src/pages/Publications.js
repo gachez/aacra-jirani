@@ -108,7 +108,7 @@ class Publications extends React.Component {
           
          }
 
-    //    function that toggles dropdowns in filter section
+    //function that toggles dropdowns in filter section
        toggleDropdown = (val) =>{
         switch(val){
             case 'category':
@@ -125,12 +125,80 @@ class Publications extends React.Component {
     }
     
 
-    //function that filters array according to searchbox text
-    onSearch = () =>{
-        this.setState({
-        filteredPublications: this.state.publications.filter(publication => publication.title.rendered.toLowerCase().indexOf(this.state.textBox.toLowerCase()) >= 0)
-        });
-    }
+        //function that filters array according to searchbox text
+        onSearch = () =>{
+            this.setState({
+            filteredPublications: this.state.publications.filter(publication => publication.title.rendered.toLowerCase().indexOf(this.state.textBox.toLowerCase()) >= 0)
+            });
+        }
+
+        resetFilters = () => {
+            this.setState({
+            publications: this.state.defaultPublications,
+            selectedCategory: 'Select a category',
+            selectedYear: "Select a year",
+            subtitle2: 'none'
+            })
+        
+        }
+        
+        returnImagesToDefault = () => {
+            this.setState({
+                publications: this.state.defaultPublications
+            })
+            return true;
+        }
+
+        //handle filters
+        filterCategory =  async (category) => {
+            if(this.state.selectedCategory === 'Select category'){
+                this.setState({
+                    selectedCategory: category,
+                    publications: this.state.publications.filter(img => img.acf['discipline'].toLowerCase() === category.toLowerCase()),
+                    subtitle2: 'block',
+                    filterCategory: 'none'
+                });
+                return 0;
+            }
+            await this.returnImagesToDefault();
+            this.setState({
+                selectedCategory: category,
+                publications: this.state.publications.filter(img => img.acf['discipline'].toLowerCase() === category.toLowerCase()),
+                subtitle2: 'block',
+                filterCategory: 'none'
+            });
+            
+        }
+
+          //filter year
+          filterYear = async (year) => {
+            if(this.state.selectedYear === 'Select a year'){
+               if(this.state.selectedCategory === 'Select category'){
+                this.setState({
+                    selectedYear: year,
+                    publications: this.state.publications.filter(img => img.acf['year'] === year),
+                    subtitle2: 'block',
+                    filterYear: 'none'
+                });
+                return 0;
+               }
+               this.setState({
+                selectedYear: year,
+                publications: this.state.publications.filter(img => img.acf['year'] === year && img.acf['discipline'].toLowerCase() === this.state.selectedCategory.toLowerCase()),
+                subtitle2: 'block',
+                filterYear: 'none'
+            });
+            return 0;
+            }
+
+            await this.returnImagesToDefault();
+            this.setState({
+                selectedYear: year,
+                publications: this.state.publications.filter(img => img.acf['year'] === year),
+                subtitle2: 'block',
+                filterYear: 'none'
+            });
+             }
 
     render(){
         if(this.state.isLoaded){
@@ -241,7 +309,7 @@ class Publications extends React.Component {
                                        {
                                            category.children.map( category => {
                                                return(
-                                                   <DropdownItem className="category-span">{category}</DropdownItem>
+                                                   <DropdownItem className="category-span" onClick={() => {this.filterCategory(category)}}>{category}</DropdownItem>
                                                )
                                            })
                                        }
@@ -277,15 +345,9 @@ class Publications extends React.Component {
                                 
                                     return(  
                                     <span className="year-span" key={index} onClick={
+                                        
                                         () => {
-                                            this.setState({
-                                                selectedYear: document.getElementsByClassName('year-span')[index].textContent,
-                                                filterCategory: 'none',
-                                                subtitle2: 'block',
-                                                publications: this.state.publications.filter(image => image.acf['discipline'].toLowerCase().includes(document.getElementsByClassName('category-span')[index].textContent.toLowerCase()))
-                                            })
-
-                                            document.getElementsByClassName('year-select')[0].style.color="#FF321A"
+                                        this.filterYear(year)
 
                                 }} style={{width: '100%'}}>{year}</span>)
                                 })
