@@ -130,7 +130,10 @@ class Videos extends React.Component {
           selectedCategory: 'Select a category',
           selectedYear: "Select a year",
           selectedDiscussion: 'Recorded lectures',
-          subtitle2: 'none'
+          subtitle2: 'none',
+          filterCategory: 'none',
+          filterDiscussion: 'none',
+          filterYear: 'none'
         })
     
  }
@@ -303,8 +306,37 @@ class Videos extends React.Component {
                                             <Col id="third-column">
                         
                                             <div id="search-input">
-                                                <input style={{position: 'absolute', right: '50px', borderBottom: 'solid 1px black',width: '200px'}} placeholder="Search title, artist" type="textbox" onChange={this.getSearch} />
+                                                <input id="search-input-box" style={{position: 'absolute', right: '50px', borderBottom: 'solid 1px black',width: '200px'}} placeholder="Search title, artist" type="textbox" onChange={this.getSearch} />
                                                 <img id="searchIcon" src={searchIcon} width="18px" height="18px" />
+                                                <div id="drop-suggest-search" style={{
+                                                    position: 'absolute',
+                                                    right: '50px',
+                                                    top: '2rem',
+                                                    width: '200px',
+                                                    height: 'fit-content',
+                                                    backgroundColor: '#fff',
+                                                    zIndex: 99,
+                                                    border: 'solid 1px rgba(0,0,0,0.3)',
+                                                    display: this.state.searchText.length < 1 ? 'none' : 'grid'
+                                                }}>
+                                                    {
+                                                        this.state.videos.filter( thumb => {
+                                                            return(
+                                                            thumb.title.rendered.toLowerCase().indexOf(this.state.searchText.toLowerCase()) >= 0
+                                                        )}).map( (image,index) => {
+                                                            return(
+                                                                <p style={{ padding: '10px', cursor: 'pointer'}} id={index} dangerouslySetInnerHTML={{__html: image.title.rendered}}
+                                                                    onClick={() => {
+                                                                        console.log('clicked');
+                                                                        document.getElementById("search-input-box").value = image.title.rendered;
+                                                                        this.state.videos.filter( thumb => thumb.title.rendered.toLowerCase().indexOf(image.title.rendered.toLowerCase()) >= 0);
+                                                                        document.getElementById("drop-suggest-search").style.display = "none"
+                                                                    }}
+                                                                ></p>
+                                                            )
+                                                        })
+                                                    }
+                                                </div>
                                             </div>
                         
                                             <span id="side-title">View VIDEOS</span>
