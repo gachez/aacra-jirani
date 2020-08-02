@@ -299,7 +299,7 @@ class Publications extends React.Component {
                                                 </div>
                               </div>
         
-                            <span id="side-title" style={{right: '80px'}}>View PUBLICATIONS</span>
+                            <span id="side-title" style={{right: '80px'}}>VIEW PUBLICATIONS</span>
         
                             <div className="category-box" style={{
                                  position: 'absolute',
