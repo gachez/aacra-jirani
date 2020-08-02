@@ -36,12 +36,14 @@
     position: absolute;
     top: 36.5%;
     left: 58.3%;
+    cursor: pointer;
 }
 
 #mastercard{
     position: absolute;
     top: 36.5%;
     left: 69.3%;
+    cursor: pointer;
 }
 
 #paypal{
@@ -49,4 +51,5 @@
     position: absolute;
     top: 36.5%;
     left: 80.2%;
+    cursor: pointer;
 }

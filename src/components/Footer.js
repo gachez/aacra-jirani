@@ -14,7 +14,6 @@ function Footer() {
           <div className="navigation-footer">
               <Link to={"/"} style={{ textDecoration: 'none', color: '#fff'}}><span>Home</span></Link>
               <Link to={"/donate"} style={{ textDecoration: 'none', color: '#fff'}}><span>Donate</span></Link>
-              <Link to={"/about"} style={{ textDecoration: 'none', color: '#fff'}}><span>About</span></Link>
               <Link to={"/contact"} style={{ textDecoration: 'none', color: '#fff'}}><span>Contact</span></Link>
           </div>
           <span className="find-us">Find us online</span>

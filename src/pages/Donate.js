@@ -22,17 +22,17 @@ class Donate extends Component{
 
                 {/* copy writing paragraph */}
                 <p id="copy-write" >Creative Knowledge Resources is a proud, non-profit organization. We rely on people like you to keep this website up and running. Any amount donated will be highly appreciated. 
-<br /><br />
-Should you wish to donate, please select your preffered payment option. Should you have any questions, feel free to <strong>contact us.</strong></p>
+                <br /><br />
+                Should you wish to donate, please select your preffered payment option. Should you have any questions, feel free to <strong>contact us.</strong></p>
 
                 {/* visa icon */}
-                <img id="visa" src={visa} />
+                <img id="visa" src={visa} onClick={() => { window.location.href = "https://www.visa.co.ke/"}} />
 
                 {/* mastercard icon */}
-                <img id="mastercard" src={mastercard} />
+                <img id="mastercard" src={mastercard} onClick={() => { window.location.href = "https://www.mastercard.us/en-us.html"}} />
 
                 {/* paypal icon */}
-                <img id="paypal" src={paypal} />
+                <img id="paypal" src={paypal} onClick={() => { window.location.href = "https://www.paypal.com/"}} />
 
          <br />
         

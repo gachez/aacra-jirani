@@ -42,6 +42,12 @@ const DESIGN = [
     'Landscape Design'
 ];
 
+const recordedLectures = [
+    'Webinar',
+    'Audio',
+    'Video'
+]
+
 const categories = [
 {
     name: 'Art',
@@ -50,14 +56,14 @@ const categories = [
 {
     name: 'Design',
     children: DESIGN
+},
+{
+    name: 'Lectures',
+    children: recordedLectures
 }
 ];
 
-const recordedLectures = [
-    'Webinar',
-    'Audio',
-    'Video'
-]
+
 
 const years = [
     2020,
@@ -339,7 +345,7 @@ class Videos extends React.Component {
                                                 </div>
                                             </div>
                         
-                                            <span id="side-title">View VIDEOS</span>
+                                            <span id="side-title">VIEW VIDEOS</span>
                         
                                             <div className="category-box" style={{
                                                 position: 'absolute',
@@ -348,7 +354,7 @@ class Videos extends React.Component {
                                             }}
                                             onClick={
                                                 () =>{
-                                                    this.toggleDropdown('category')
+                                                    this.toggleDropdown('category');
                                                 }
                                             }
                                             >
@@ -396,36 +402,9 @@ class Videos extends React.Component {
                                             </div>
                                             
                                             <br />
-                                            <div className="category-box" style={{
-                                                position: 'absolute',
-                                                top: '218px',
-                                                right: '50px'
-                                            }}
-                                            onClick={() => {
-                                                this.toggleDropdown('discussion')
-                                            }}
-                                            >
-                                            <span className="discussion-select">{this.state.selectedDiscussion}</span>
-                                            <svg width="20" height="20" className="iconDown" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M6 9L12 15L18 9" stroke="#FF321A" strokeLinecap="round" strokeLinejoin="round"/>
-                                                </svg>
-                                            </div>
-                                            <div className="dropdown-box" style={{
-                                                top: '263px',
-                                                display: this.state.filterDiscussion
-                                            }}>
-                                                         {
-                                          recordedLectures.map((discussion, index) => {
-                                                return(  <span className="discussion-span" key={index} onClick={
-                                                    () => {this.filterDiscussion(discussion)}} style={{width: '100%'}}>{discussion}</span>)
-                                                        })
-
-                                                    }
-                                                    </div>
-                                                    <br />
                                                     <div className="category-box" style={{
                                                         position: 'absolute',
-                                                        top: '298px',
+                                                        top: '218px',
                                                         right: '50px'
                                                     }}
                                                     onClick={
@@ -441,7 +420,7 @@ class Videos extends React.Component {
                                                 </svg>
                                             </div>
                                             <div className="dropdown-box" style={{
-                                                top: '343px',
+                                                top: '268px',
                                                 display: this.state.filterYear
                                             }}>
                                                 {
@@ -459,7 +438,6 @@ class Videos extends React.Component {
                                     document.getElementsByClassName('sub-title')[1].style.display="none";
 
                                     document.getElementsByClassName('category-select')[0].style.color="#000";
-                                    document.getElementsByClassName('discussion-select')[0].style.color="#000";
 
                                     document.getElementsByClassName('year-select')[0].style.color="#000";
 
